@@ -1,12 +1,20 @@
 import { ActionIcon, Menu } from '@mantine/core';
-import { IconDots, IconLayoutKanban, IconPencil, IconTrash } from '@tabler/icons';
+import {
+  IconCopy,
+  IconLayoutKanban,
+  IconPencil,
+  IconSettings,
+  IconTrash,
+} from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
+
 import { useEditModeStore } from '../Views/useEditModeStore';
 
 interface GenericTileMenuProps {
   handleClickEdit: () => void;
   handleClickChangePosition: () => void;
   handleClickDelete: () => void;
+  handleDuplicate?: () => void;
   displayEdit: boolean;
 }
 
@@ -14,6 +22,7 @@ export const GenericTileMenu = ({
   handleClickEdit,
   handleClickChangePosition,
   handleClickDelete,
+  handleDuplicate,
   displayEdit,
 }: GenericTileMenuProps) => {
   const { t } = useTranslation('common');
@@ -26,8 +35,16 @@ export const GenericTileMenu = ({
   return (
     <Menu withinPortal withArrow position="right">
       <Menu.Target>
-        <ActionIcon size="md" radius="md" variant="light" pos="absolute" top={8} right={8}>
-          <IconDots />
+        <ActionIcon
+          style={{ zIndex: 1 }}
+          size="md"
+          radius="md"
+          variant="light"
+          pos="absolute"
+          top={8}
+          right={8}
+        >
+          <IconSettings />
         </ActionIcon>
       </Menu.Target>
       <Menu.Dropdown w={250}>
@@ -35,6 +52,11 @@ export const GenericTileMenu = ({
         {displayEdit && (
           <Menu.Item icon={<IconPencil size={16} stroke={1.5} />} onClick={handleClickEdit}>
             {t('edit')}
+          </Menu.Item>
+        )}
+        {handleDuplicate && (
+          <Menu.Item icon={<IconCopy size={'1rem'} />} onClick={handleDuplicate}>
+            {t('duplicate')}
           </Menu.Item>
         )}
         <Menu.Item

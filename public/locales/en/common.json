@@ -1,15 +1,28 @@
 {
   "save": "Save",
+  "apply": "Apply",
+  "insert": "Insert",
   "about": "About",
   "cancel": "Cancel",
   "close": "Close",
+  "back": "Back",
   "delete": "Delete",
   "ok": "OK",
   "edit": "Edit",
+  "next": "Next",
+  "previous": "Previous",
+  "confirm": "Confirm",
+  "enabled": "Enabled",
+  "duplicate": "Duplicate",
+  "disabled": "Disabled",
+  "enableAll": "Enable all",
+  "disableAll": "Disable all",
+  "setTimer": "Set timer",
   "version": "Version",
   "changePosition": "Change position",
   "remove": "Remove",
   "removeConfirm": "Are you sure that you want to remove {{item}}?",
+  "createItem": "+ create {{item}}",
   "sections": {
     "settings": "Settings",
     "dangerZone": "Danger zone"
@@ -30,5 +43,17 @@
     "small": "small",
     "medium": "medium",
     "large": "large"
-  }
+  },
+  "seeMore": "See more...",
+  "position": {
+    "left": "Left",
+    "center": "Center",
+    "right": "Right"
+  },
+  "attributes": {
+    "width": "Width",
+    "height": "Height"
+  },
+  "public": "Public",
+  "restricted": "Restricted"
 }

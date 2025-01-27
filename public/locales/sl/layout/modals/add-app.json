@@ -1,7 +1,7 @@
 {
 	"tabs": {
 		"general": "Splošno",
-		"behaviour": "Vedenje",
+		"behaviour": "Obnašanje",
 		"network": "Omrežje",
 		"appearance": "Videz",
 		"integration": "Integracija"
@@ -13,18 +13,38 @@
 		},
 		"internalAddress": {
 			"label": "Notranji naslov",
-			"description": "Notranji naslov IP aplikacije."
+			"description": "Notranji naslov IP aplikacije.",
+			"troubleshoot": {
+				"label": "Imate težave?",
+				"header": "Tukaj je seznam najpogostejših napak in odpravljanje težav:",
+				"lines": {
+					"nothingAfterPort": "V večini primerov, če ne v vseh, za vratom ne smete vnesti nobene poti. (tudi '/admin' za pihole ali '/web' za plex).",
+					"protocolCheck": "Vedno se prepričajte, da je pred naslovom URL http ali https, in preverite, ali uporabljate pravi naslov.",
+					"preferIP": "Priporočljivo je, da uporabite neposredni naslov ip stroja ali posode, s katero želite komunicirati.",
+					"enablePings": "Preverite, ali je naslov IP pravilen, tako da omogočite klicanje (ping). Prilagodi tablo -> Postavitev -> Omogoči pinge. Na ploščicah aplikacije se bo pojavil majhen rdeč ali zelen mehurček, ki bo ob podrsavanju pokazal kodo odziva (v večini primerov se pričakuje zelen mehurček s kodo 200).",
+					"wget": "Če želite zagotoviti, da lahko homarr komunicira z drugimi aplikacijami, poskrbite, da wget/curl/ping določi IP:vrata aplikacije.",
+					"iframe": "Če gre za iframe, morajo ti vedno uporabljati isti protokol (http/s) kot Homarr.",
+					"clearCache": "Nekatere informacije so shranjene v predpomnilniku, zato integracija morda ne bo delovala, če ne počistite predpomnilnika v Homarrovih splošnih možnostih."
+				},
+				"footer": "Za več težav se obrnite na našo spletno stran {{discord}}."
+			}
 		},
 		"externalAddress": {
 			"label": "Zunanji naslov",
-			"description": "URL, ki se odpre ob kliku na aplikacijo."
+			"description": "URL, ki se odpre ob kliku na aplikacijo.",
+			"tooltip": ""
 		}
 	},
 	"behaviour": {
 		"isOpeningNewTab": {
 			"label": "Odprite v novem zavihku",
 			"description": "Odprite aplikacijo v novem zavihku namesto v trenutnem zavihku."
-		}
+		},
+		"tooltipDescription": {
+			"label": "Opis aplikacije",
+			"description": "Besedilo, ki ga vnesete, se prikaže, ko se z miško pomaknete nad aplikacijo.\r\nUporabite ga, če želite uporabnikom posredovati več podrobnosti o svoji aplikaciji, ali pa pustite prazno, če želite, da ni ničesar."
+		},
+		"customProtocolWarning": "Uporaba nestandardnega protokola. To lahko zahteva vnaprej nameščene aplikacije in lahko povzroči varnostna tveganja. Prepričajte se, da je vaš naslov varen in zaupanja vreden."
 	},
 	"network": {
 		"statusChecker": {
@@ -39,7 +59,7 @@
 	"appearance": {
 		"icon": {
 			"label": "Ikona aplikacije",
-			"description": "Izberite ikono, ki bo prikazana na nadzorni plošči. Izbirate lahko med ikonami {{suggestionsCount}} ali vnesete svoj URL",
+			"description": "Začnite tipkati in poiščite ikono. Če želite uporabiti ikono po meri, lahko prilepite tudi naslov URL slike.",
 			"autocomplete": {
 				"title": "Ni rezultatov",
 				"text": "Poskusite uporabiti bolj specifičen iskalni izraz. Če želene ikone ne najdete, prilepite zgornji naslov URL slike za ikono po meri"
@@ -48,6 +68,33 @@
 				"title": "Nalaganje zunanjih ikon",
 				"text": "To lahko traja nekaj sekund"
 			}
+		},
+		"appNameFontSize": {
+			"label": "Ime aplikacije Velikost pisave",
+			"description": "Nastavite velikost pisave za prikaz imena aplikacije na ploščici."
+		},
+		"appNameStatus": {
+			"label": "Ime aplikacije Status",
+			"description": "Izberite, kje naj se prikaže naslov, če sploh.",
+			"dropdown": {
+				"normal": "Prikaži naslov samo na ploščici",
+				"hover": "Prikaži naslov samo ob podnapisu z miško",
+				"hidden": "Sploh se ne prikažejo"
+			}
+		},
+		"positionAppName": {
+			"label": "Ime aplikacije Položaj",
+			"description": "Položaj imena aplikacije glede na ikono.",
+			"dropdown": {
+				"top": "Vrh",
+				"right": "Desno",
+				"bottom": "Dno",
+				"left": "Leva stran"
+			}
+		},
+		"lineClampAppName": {
+			"label": "Ime aplikacije Line Clamp",
+			"description": "Določa, v koliko vrstic naj se največ prilega vašemu naslovu. Nastavite 0 za neomejeno."
 		}
 	},
 	"integration": {
@@ -71,6 +118,12 @@
 		}
 	},
 	"validation": {
-		"popover": "Vaš obrazec vsebuje neveljavne podatke. Zato ga ni mogoče shraniti. Odpravite vse težave in ponovno kliknite ta gumb, da shranite spremembe."
+		"popover": "Vaš obrazec vsebuje neveljavne podatke. Zato ga ni mogoče shraniti. Odpravite vse težave in ponovno kliknite ta gumb, da shranite spremembe.",
+		"name": "Zahtevano je ime",
+		"noUrl": "Url je potreben",
+		"invalidUrl": "Vrednost ni veljaven url",
+		"noIconUrl": "To polje je obvezno",
+		"noExternalUri": "Zahteva se zunanji URI",
+		"invalidExternalUri": "Zunanji URI ni veljaven uri"
 	}
 }

@@ -1,4 +1,5 @@
-import { IconKey, IconPassword, IconUser, TablerIcon } from '@tabler/icons';
+import { Icon, IconKey, IconPassword, IconUser } from '@tabler/icons-react';
+import { Property } from 'csstype';
 
 import { TileBaseType } from './tile';
 
@@ -19,15 +20,24 @@ export type ConfigAppType = Omit<AppType, 'integration'> & {
 interface AppBehaviourType {
   externalUrl: string;
   isOpeningNewTab: boolean;
+  tooltipDescription?: string;
 }
 
 interface AppNetworkType {
   enabledStatusChecker: boolean;
+  /**
+   * @deprecated replaced by statusCodes
+   */
+  okStatus?: number[];
   statusCodes: string[];
 }
 
 interface AppAppearanceType {
   iconUrl: string;
+  appNameStatus: 'normal' | 'hover' | 'hidden';
+  positionAppName: Property.FlexDirection;
+  appNameFontSize: number;
+  lineClampAppName: number;
 }
 
 export type IntegrationType =
@@ -35,6 +45,7 @@ export type IntegrationType =
   | 'radarr'
   | 'sonarr'
   | 'lidarr'
+  | 'prowlarr'
   | 'sabnzbd'
   | 'jellyseerr'
   | 'overseerr'
@@ -43,7 +54,13 @@ export type IntegrationType =
   | 'transmission'
   | 'plex'
   | 'jellyfin'
-  | 'nzbGet';
+  | 'nzbGet'
+  | 'pihole'
+  | 'adGuardHome'
+  | 'homeAssistant'
+  | 'openmediavault'
+  | 'proxmox'
+  | 'tdarr';
 
 export type AppIntegrationType = {
   type: IntegrationType | null;
@@ -73,6 +90,7 @@ export const integrationFieldProperties: {
   lidarr: ['apiKey'],
   radarr: ['apiKey'],
   sonarr: ['apiKey'],
+  prowlarr: ['apiKey'],
   sabnzbd: ['apiKey'],
   readarr: ['apiKey'],
   overseerr: ['apiKey'],
@@ -83,11 +101,17 @@ export const integrationFieldProperties: {
   transmission: ['username', 'password'],
   jellyfin: ['username', 'password'],
   plex: ['apiKey'],
+  pihole: ['apiKey'],
+  adGuardHome: ['username', 'password'],
+  homeAssistant: ['apiKey'],
+  openmediavault: ['username', 'password'],
+  proxmox: ['apiKey'],
+  tdarr: [],
 };
 
 export type IntegrationFieldDefinitionType = {
   type: 'private' | 'public';
-  icon: TablerIcon;
+  icon: Icon;
   label: string;
 };
 

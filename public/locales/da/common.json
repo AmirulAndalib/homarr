@@ -1,15 +1,28 @@
 {
   "save": "Gem",
+  "apply": "Anvend",
+  "insert": "Indsæt",
   "about": "Om",
   "cancel": "Annuller",
   "close": "Luk",
+  "back": "Tilbage",
   "delete": "Slet",
   "ok": "OK",
   "edit": "Rediger",
+  "next": "Næste",
+  "previous": "Forrige",
+  "confirm": "Bekræft",
+  "enabled": "Aktiveret",
+  "duplicate": "Duplikér",
+  "disabled": "Deaktiveret",
+  "enableAll": "Aktiver alle",
+  "disableAll": "Deaktiver alle",
+  "setTimer": "Sæt timer",
   "version": "Version",
   "changePosition": "Ændre placering",
   "remove": "Fjern",
-  "removeConfirm": "Er du sikker på, at du ønsker at fjerne {{item}} ?",
+  "removeConfirm": "Er du sikker på, at du ønsker at fjerne {{item}}?",
+  "createItem": "+ opret {{item}}",
   "sections": {
     "settings": "Indstillinger",
     "dangerZone": "Farezone"
@@ -30,5 +43,17 @@
     "small": "lille",
     "medium": "mellem",
     "large": "stor"
-  }
+  },
+  "seeMore": "Se mere...",
+  "position": {
+    "left": "Venstre",
+    "center": "Centrer",
+    "right": "Højre"
+  },
+  "attributes": {
+    "width": "Bredde",
+    "height": "Højde"
+  },
+  "public": "Offentlig",
+  "restricted": "Begrænset"
 }

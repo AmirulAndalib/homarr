@@ -1,7 +1,8 @@
 import { Center, Group, Stack, Title } from '@mantine/core';
-import { IconDeviceCctv, IconHeartBroken } from '@tabler/icons';
+import { IconDeviceCctv, IconHeartBroken } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
+
 import { defineWidget } from '../helper';
 import { IWidget } from '../widgets';
 
@@ -29,8 +30,8 @@ const definition = defineWidget({
     },
   },
   gridstack: {
-    minWidth: 3,
-    minHeight: 2,
+    minWidth: 1,
+    minHeight: 1,
     maxWidth: 12,
     maxHeight: 12,
   },

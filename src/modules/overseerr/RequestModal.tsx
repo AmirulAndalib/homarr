@@ -1,14 +1,15 @@
-import { Alert, Button, Checkbox, createStyles, Group, Modal, Stack, Table } from '@mantine/core';
+import { Alert, Button, Checkbox, Group, Modal, Stack, Table, createStyles } from '@mantine/core';
 import { showNotification, updateNotification } from '@mantine/notifications';
-import { IconAlertCircle, IconCheck, IconDownload } from '@tabler/icons';
-import axios from 'axios';
+import { IconAlertCircle, IconCheck, IconDownload } from '@tabler/icons-react';
 import Consola from 'consola';
 import { useTranslation } from 'next-i18next';
-
 import { useState } from 'react';
-import { useColorTheme } from '../../tools/color';
+import { useConfigContext } from '~/config/provider';
+import { useColorTheme } from '~/tools/color';
+import { api } from '~/utils/api';
+
 import { MovieResult } from './Movie.d';
-import { MediaType, Result } from './SearchResult.d';
+import { Result } from './SearchResult';
 import { TvShowResult, TvShowResultSeason } from './TvShow.d';
 
 interface RequestModalProps {
@@ -27,20 +28,22 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function RequestModal({ base, opened, setOpened }: RequestModalProps) {
-  const [result, setResult] = useState<MovieResult | TvShowResult>();
-  const { secondaryColor } = useColorTheme();
+  const { name: configName } = useConfigContext();
+  const { data: result } = api.overseerr.byId.useQuery(
+    {
+      id: base.id,
+      type: base.mediaType,
+      configName: configName!,
+    },
+    {
+      enabled: opened,
+    }
+  );
 
-  function getResults(base: Result) {
-    axios.get(`/api/modules/overseerr/${base.id}?type=${base.mediaType}`).then((res) => {
-      setResult(res.data);
-    });
-  }
-  if (opened && !result) {
-    getResults(base);
-  }
   if (!result || !opened) {
     return null;
   }
+
   return base.mediaType === 'movie' ? (
     <MovieRequestModal result={result as MovieResult} opened={opened} setOpened={setOpened} />
   ) : (
@@ -58,6 +61,7 @@ export function MovieRequestModal({
   setOpened: (opened: boolean) => void;
 }) {
   const { secondaryColor } = useColorTheme();
+  const requestMediaAsync = useMediaRequestMutation();
   const { t } = useTranslation('modules/overseerr');
 
   return (
@@ -66,7 +70,7 @@ export function MovieRequestModal({
       radius="lg"
       size="lg"
       trapFocus
-      zIndex={150}
+      zIndex={250}
       withinPortal
       opened={opened}
       title={
@@ -93,7 +97,7 @@ export function MovieRequestModal({
           <Button
             variant="outline"
             onClick={() => {
-              askForMedia(MediaType.Movie, result.id, result.title, []);
+              requestMediaAsync('movie', result.id, result.title);
             }}
           >
             {t('popup.item.buttons.request')}
@@ -116,6 +120,7 @@ export function TvRequestModal({
   const [selection, setSelection] = useState<TvShowResultSeason[]>(result.seasons);
   const { classes, cx } = useStyles();
   const { t } = useTranslation('modules/overseerr');
+  const requestMediaAsync = useMediaRequestMutation();
 
   const toggleRow = (container: TvShowResultSeason) =>
     setSelection((current: TvShowResultSeason[]) =>
@@ -150,6 +155,7 @@ export function TvRequestModal({
       onClose={() => setOpened(false)}
       radius="lg"
       size="lg"
+      zIndex={250}
       opened={opened}
       title={
         <Group>
@@ -196,8 +202,8 @@ export function TvRequestModal({
             variant="outline"
             disabled={selection.length === 0}
             onClick={() => {
-              askForMedia(
-                MediaType.Tv,
+              requestMediaAsync(
+                'tv',
                 result.id,
                 result.name,
                 selection.map((s) => s.seasonNumber)
@@ -212,37 +218,51 @@ export function TvRequestModal({
   );
 }
 
-function askForMedia(type: MediaType, id: number, name: string, seasons?: number[]) {
-  Consola.info(`Requesting ${type} ${id} ${name}`);
-  showNotification({
-    title: 'Request',
-    id: id.toString(),
-    message: `Requesting media ${name}`,
-    color: 'orange',
-    loading: true,
-    autoClose: false,
-    withCloseButton: false,
-    icon: <IconAlertCircle />,
-  });
-  axios
-    .post(`/api/modules/overseerr/${id}`, { type, seasons })
-    .then(() => {
-      updateNotification({
-        id: id.toString(),
-        title: '',
-        color: 'green',
-        message: ` ${name} requested`,
-        icon: <IconCheck />,
-        autoClose: 2000,
-      });
-    })
-    .catch((err) => {
-      updateNotification({
-        id: id.toString(),
-        color: 'red',
-        title: 'There was an error',
-        message: err.message,
-        autoClose: 2000,
-      });
+const useMediaRequestMutation = () => {
+  const { name: configName } = useConfigContext();
+  const { mutateAsync } = api.overseerr.request.useMutation();
+
+  return async (type: 'tv' | 'movie', id: number, name: string, seasons?: number[]) => {
+    Consola.info(`Requesting ${type} ${id} ${name}`);
+    showNotification({
+      title: 'Request',
+      id: id.toString(),
+      message: `Requesting media ${name}`,
+      color: 'orange',
+      loading: true,
+      autoClose: false,
+      withCloseButton: false,
+      icon: <IconAlertCircle />,
     });
-}
+
+    await mutateAsync(
+      {
+        configName: configName!,
+        id,
+        type,
+        seasons: seasons ?? [],
+      },
+      {
+        onSuccess: () => {
+          updateNotification({
+            id: id.toString(),
+            title: '',
+            color: 'green',
+            message: ` ${name} requested`,
+            icon: <IconCheck />,
+            autoClose: 2000,
+          });
+        },
+        onError: (err) => {
+          updateNotification({
+            id: id.toString(),
+            color: 'red',
+            title: 'There was an error',
+            message: err.message,
+            autoClose: 2000,
+          });
+        },
+      }
+    );
+  };
+};

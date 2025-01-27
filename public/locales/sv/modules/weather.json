@@ -7,6 +7,15 @@
       "displayInFahrenheit": {
         "label": "Visa i Fahrenheit"
       },
+      "displayCityName": {
+        "label": "Visa stadens namn"
+      },
+      "displayWeekly": {
+        "label": "Visa veckovis prognos"
+      },
+      "forecastDays": {
+        "label": "Dagar att visa"
+      },
       "location": {
         "label": "Plats för väder"
       }
@@ -29,5 +38,6 @@
       "thunderstormWithHail": "Åskväder med hagel",
       "unknown": "Okänd"
     }
-  }
+  },
+  "error": "Ett fel uppstod"
 }

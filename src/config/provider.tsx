@@ -1,7 +1,8 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import shallow from 'zustand/shallow';
-import { useColorTheme } from '../tools/color';
-import { ConfigType } from '../types/config';
+import { shallow } from 'zustand/shallow';
+import { useColorTheme } from '~/tools/color';
+import { ConfigType } from '~/types/config';
+
 import { useConfigStore } from './store';
 
 export type ConfigContextType = {
@@ -20,25 +21,33 @@ const ConfigContext = createContext<ConfigContextType>({
   setConfigName: () => {},
 });
 
-export const ConfigProvider = ({ children }: { children: ReactNode }) => {
-  const [configName, setConfigName] = useState<string>();
+export const ConfigProvider = ({
+  children,
+  config: fallbackConfig,
+}: {
+  children: ReactNode;
+  config?: ConfigType;
+}) => {
+  const [configName, setConfigName] = useState<string>(
+    fallbackConfig?.configProperties.name || 'unknown'
+  );
   const [configVersion, setConfigVersion] = useState(0);
   const { configs } = useConfigStore((s) => ({ configs: s.configs }), shallow);
-  const { setPrimaryColor, setSecondaryColor, setPrimaryShade } = useColorTheme();
 
   const currentConfig = configs.find((c) => c.value.configProperties.name === configName)?.value;
+  const { setPrimaryColor, setSecondaryColor, setPrimaryShade } = useColorTheme();
 
   useEffect(() => {
     setPrimaryColor(currentConfig?.settings.customization.colors.primary || 'red');
     setSecondaryColor(currentConfig?.settings.customization.colors.secondary || 'orange');
     setPrimaryShade(currentConfig?.settings.customization.colors.shade || 6);
-  }, [configName]);
+  }, [currentConfig]);
 
   return (
     <ConfigContext.Provider
       value={{
         name: configName,
-        config: currentConfig,
+        config: currentConfig ?? fallbackConfig,
         configVersion,
         increaseVersion: () => setConfigVersion((v) => v + 1),
         setConfigName: (name: string) => setConfigName(name),

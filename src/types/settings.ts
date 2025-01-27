@@ -3,11 +3,15 @@ import { MantineTheme } from '@mantine/core';
 export interface SettingsType {
   common: CommonSettingsType;
   customization: CustomizationSettingsType;
+  access: BoardAccessSettingsType;
+}
+
+export interface BoardAccessSettingsType {
+  allowGuests: boolean;
 }
 
 export interface CommonSettingsType {
   searchEngine: SearchEngineCommonSettingsType;
-  defaultConfig: string;
 }
 
 export type SearchEngineCommonSettingsType =
@@ -41,10 +45,25 @@ export interface CustomizationSettingsType {
   logoImageUrl?: string;
   faviconUrl?: string;
   backgroundImageUrl?: string;
+  backgroundImageAttachment?: typeof BackgroundImageAttachment[number];
+  backgroundImageSize?: typeof BackgroundImageSize[number];
+  backgroundImageRepeat?: typeof BackgroundImageRepeat[number];
   customCss?: string;
   colors: ColorsCustomizationSettingsType;
   appOpacity?: number;
   gridstack?: GridstackSettingsType;
+  accessibility: AccessibilitySettings;
+}
+
+export const BackgroundImageAttachment = ['fixed',  'scroll'] as const;
+
+export const BackgroundImageSize = ['cover', 'contain'] as const;
+
+export const BackgroundImageRepeat = ['no-repeat', 'repeat', 'repeat-x', 'repeat-y'] as const;
+
+export interface AccessibilitySettings {
+  disablePingPulse: boolean;
+  replacePingDotsWithIcons: boolean;
 }
 
 export interface GridstackSettingsType {

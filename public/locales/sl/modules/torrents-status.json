@@ -10,30 +10,79 @@
       "displayCompletedTorrents": {
         "label": "Prikaži dokončane torrente"
       },
+      "displayActiveTorrents": {
+        "label": "Prikaz aktivnih torrentov"
+      },
+      "speedLimitOfActiveTorrents": {
+        "label": "Hitrost prenosa, da se torrent šteje za aktivnega (kB/s)"
+      },
       "displayStaleTorrents": {
         "label": "Prikaži zastarele torrente"
+      },
+      "labelFilterIsWhitelist": {
+        "label": "Seznam nalepk je beli seznam (namesto črnega seznama)."
+      },
+      "labelFilter": {
+        "label": "Seznam oznak",
+        "description": "Če je možnost 'je bela lista' označena, bo delovala kot bela lista. Če ni preverjeno, je to črni seznam. Če je prazen, ne bo naredil ničesar."
+      },
+      "displayRatioWithFilter": {
+        "label": "Prikaz razmerja filtriranega seznama torrentov",
+        "info": "Če je onemogočeno, se prikaže samo globalno razmerje. Če je nastavljeno globalno razmerje, se bodo še vedno uporabljale oznake."
+      },
+      "columnOrdering": {
+        "label": ""
+      },
+      "rowSorting": {
+        "label": ""
+      },
+      "columns": {
+        "label": "",
+        "data": {
+          "date": "",
+          "down": "Dol",
+          "up": "Gor",
+          "eta": "ETA",
+          "progress": "Napredek"
+        }
+      },
+      "nameColumnSize": {
+        "label": ""
       }
     }
   },
   "card": {
     "footer": {
       "error": "Napaka",
-      "lastUpdated": "Nazadnje posodobljeno {{time}} nazaj"
+      "lastUpdated": "Nazadnje posodobljeno {{time}} nazaj",
+      "ratioGlobal": "Globalno razmerje",
+      "ratioWithFilter": "Razmerje s filtrom"
     },
     "table": {
       "header": {
+        "isCompleted": "Prenašanje spletne strani",
         "name": "Ime",
+        "dateAdded": "Dodano na",
         "size": "Velikost",
         "download": "Dol",
         "upload": "Gor",
         "estimatedTimeOfArrival": "ETA",
-        "progress": "Napredek"
+        "progress": "Napredek",
+        "totalUploaded": "Skupno nalaganje",
+        "totalDownloaded": "Skupaj za prenos",
+        "ratio": "Razmerje",
+        "seeds": "Semena (povezana)",
+        "peers": "Vrstniki (povezani)",
+        "label": "Oznaka",
+        "state": "Stanje",
+        "stateMessage": "Sporočilo države"
       },
       "item": {
         "text": "Upravlja {{appName}}, {{ratio}} razmerje"
       },
       "body": {
-        "nothingFound": "Ni najdenih torrentov"
+        "nothingFound": "Ni najdenih torrentov",
+        "filterHidingItems": "{{count}} vnosi so skriti z vašimi filtri."
       }
     },
     "lineChart": {
@@ -50,12 +99,9 @@
         "text": "Dodajte podprt odjemalec Torrent, da si ogledate trenutne prenose"
       },
       "generic": {
-        "title": "Zgodila se je nepričakovana napaka",
-        "text": "Homarr ni mogel komunicirati z vašimi odjemalci Torrent. Prosimo, preverite svojo konfiguracijo"
+        "title": "Prišlo je do nepričakovane napake",
+        "text": "Ne morete komunicirati z odjemalci Torrent. Preverite svojo konfiguracijo."
       }
-    },
-    "loading": {
-      "title": "Nalaganje..."
     },
     "popover": {
       "introductionPrefix": "Upravlja jo",

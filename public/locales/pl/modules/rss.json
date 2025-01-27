@@ -1,19 +1,39 @@
 {
   "descriptor": {
-    "name": "",
-    "description": "",
+    "name": "Widżet RSS",
+    "description": "Widżet rss umożliwia wyświetlanie kanałów RSS na pulpicie nawigacyjnym.",
     "settings": {
-      "title": "",
+      "title": "Ustawienia dla widżetu RSS",
       "rssFeedUrl": {
+        "label": "Adres URL źródła danych RSS",
+        "description": "Adresy URL kanałów RSS, które mają być wyświetlane."
+      },
+      "refreshInterval": {
+        "label": "Częstotliwość odświeżania (w minutach)"
+      },
+      "dangerousAllowSanitizedItemContent": {
+        "label": "Zezwalaj na formatowanie HTML (niebezpieczne)",
+        "info": "Zezwolenie na formatowanie HTML z zewnątrz może być niebezpieczne.<br/>Upewnij się, że kanał pochodzi z zaufanego źródła."
+      },
+      "textLinesClamp": {
+        "label": "Maksymalna ilość linii tekstu"
+      },
+      "sortByPublishDateAscending": {
+        "label": "Sortuj według daty publikacji (rosnąco)"
+      },
+      "sortPostsWithoutPublishDateToTheTop": {
+        "label": ""
+      },
+      "maximumAmountOfPosts": {
         "label": ""
       }
-    }
-  },
-  "card": {
-    "errors": {
-      "general": {
-        "title": "",
-        "text": ""
+    },
+    "card": {
+      "errors": {
+        "general": {
+          "title": "Nie można pobrać kanału RSS",
+          "text": "Wystąpił problem z połączeniem z kanałem RSS. Upewnij się, że poprawnie skonfigurowałeś kanał RSS używając poprawnego adresu URL. Adresy URL powinny być zgodne z oficjalną specyfikacją. Po aktualizacji kanału należy odświeżyć panel nawigacyjny."
+        }
       }
     }
   }

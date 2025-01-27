@@ -6,14 +6,16 @@ import {
   SwitchProps,
   TextInputProps,
 } from '@mantine/core';
-import { TablerIcon } from '@tabler/icons';
+import { Icon } from '@tabler/icons-react';
 import React from 'react';
-import { AreaType } from '../types/area';
-import { ShapeType } from '../types/shape';
+import { IntegrationType } from '~/types/app';
+import { AreaType } from '~/types/area';
+import { ShapeType } from '~/types/shape';
 
 // Type of widgets which are saved to config
 export type IWidget<TKey extends string, TDefinition extends IWidgetDefinition> = {
-  id: TKey;
+  id: string;
+  type: TKey;
   properties: {
     [key in keyof TDefinition['options']]: MakeLessSpecific<
       TDefinition['options'][key]['defaultValue']
@@ -29,26 +31,37 @@ export type IWidget<TKey extends string, TDefinition extends IWidgetDefinition> 
 type MakeLessSpecific<T> = T extends boolean ? boolean : T;
 
 // Types of options that can be specified for the widget edit modal
-export type IWidgetOptionValue =
+export type IWidgetOptionValue = (
   | IMultiSelectOptionValue
   | ISwitchOptionValue
   | ITextInputOptionValue
   | ISliderInputOptionValue
   | ISelectOptionValue
   | INumberInputOptionValue
-  | IDraggableListInputValue;
+  | IDraggableListInputValue
+  | IDraggableEditableListInputValue<any>
+  | IMultipleTextInputOptionValue
+  | ILocationOptionValue
+) &
+  ICommonWidgetOptions;
 
 // Interface for data type
 interface DataType {
-  label: string;
+  label?: string;
   value: string;
+}
+
+interface ICommonWidgetOptions {
+  info?: boolean;
+  hide?: boolean;
+  infoLink?: string;
 }
 
 // will show a multi-select with specified data
 export type IMultiSelectOptionValue = {
   type: 'multi-select';
   defaultValue: string[];
-  data: DataType[];
+  data: DataType[] | (() => DataType[]);
   inputProps?: Partial<MultiSelectProps>;
 };
 
@@ -56,7 +69,7 @@ export type IMultiSelectOptionValue = {
 export type ISelectOptionValue = {
   type: 'select';
   defaultValue: string;
-  data: DataType[];
+  data: DataType[] | (() => DataType[]);
   inputProps?: Partial<SelectProps>;
 };
 
@@ -91,6 +104,12 @@ export type ISliderInputOptionValue = {
   inputProps?: Partial<SliderProps>;
 };
 
+// will show a custom location selector
+type ILocationOptionValue = {
+  type: 'location';
+  defaultValue: { latitude: number; longitude: number };
+};
+
 // will show a sortable list that can have sub settings
 export type IDraggableListInputValue = {
   type: 'draggable-list';
@@ -104,10 +123,29 @@ export type IDraggableListInputValue = {
   >;
 };
 
+export type IDraggableEditableListInputValue<TData extends { id: string }> = {
+  type: 'draggable-editable-list';
+  defaultValue: TData[];
+  create: () => TData;
+  getLabel: (data: TData) => string | JSX.Element;
+  itemComponent: (props: {
+    data: TData;
+    onChange: (data: TData) => void;
+    delete: () => void;
+  }) => JSX.Element;
+};
+
+// will show a text-input with a button to add a new line
+export type IMultipleTextInputOptionValue = {
+  type: 'multiple-text';
+  defaultValue: string[];
+  inputProps?: Partial<TextInputProps>;
+};
+
 // is used to type the widget definitions which will be used to display all widgets
 export type IWidgetDefinition<TKey extends string = string> = {
   id: TKey;
-  icon: TablerIcon | string;
+  icon: Icon | string;
   options: {
     [key: string]: IWidgetOptionValue;
   };

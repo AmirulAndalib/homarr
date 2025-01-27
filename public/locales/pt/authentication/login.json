@@ -1,27 +1,24 @@
 {
+  "metaTitle": "“Login”",
   "title": "Bem-vindo de volta!",
-  "text": "Por favor introduza a sua palavra-passe",
+  "text": "Por favor insira suas credenciais",
   "form": {
     "fields": {
+      "username": {
+        "label": "Usuário"
+      },
       "password": {
-        "label": "Senha",
-        "placeholder": "Sua senha"
+        "label": "Senha"
       }
     },
     "buttons": {
       "submit": "Iniciar sessão"
+    },
+    "afterLoginRedirection": "Após o login, você será redirecionado para {{url}}",
+    "providersEmpty": {
+      "title": "Erro do provedor de autenticação",
+      "message": "O(s) provedo(s) não está(ão) definido(s). Por favor, verifique seus logs para mais informações."
     }
   },
-  "notifications": {
-    "checking": {
-      "title": "Conferindo sua senha",
-      "message": "Sua senha está sendo verificada..."
-    },
-    "correct": {
-      "title": "Entrar com sucesso, redireccionando..."
-    },
-    "wrong": {
-      "title": "A senha que introduziu está incorrecta, por favor tente novamente."
-    }
-  }
+  "alert": "Suas credenciais estão incorretas ou esta conta não existe. Tente novamente."
 }

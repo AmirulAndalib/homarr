@@ -14,8 +14,16 @@
       "description": "Titel, Logo und PWA anpassen"
     },
     "appereance": {
-      "name": "Erscheinungsbild",
-      "description": "Anpassen des Hintergrunds, der Farben und des Erscheinungsbilds der Anwendung"
+      "name": "Aussehen",
+      "description": "Anpassen des Hintergrunds, der Farben und des Erscheinungsbilds"
+    },
+    "accessibility": {
+      "name": "Barrierefreiheit",
+      "description": "Homarr für behinderte und gehandicapte Benutzer einrichten"
+    },
+    "access": {
+      "name": "Zugang",
+      "description": "Konfigurieren Sie, wer Zugriff auf Ihr Board hat"
     }
   }
 }

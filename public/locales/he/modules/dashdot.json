@@ -1,9 +1,12 @@
 {
   "descriptor": {
     "name": "Dash.",
-    "description": "מציג נתוני גרפים.",
+    "description": "מציג מופעי נתוני גרפים מ- Dash בתוך Homarr.",
     "settings": {
       "title": "הגדרות עבור וידג׳ט Dash.",
+      "dashName": {
+        "label": "דאש. שם"
+      },
       "url": {
         "label": "כתובת אתר Dash."
       },

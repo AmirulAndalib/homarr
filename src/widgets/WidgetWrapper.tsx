@@ -1,12 +1,13 @@
-import { ComponentType, useMemo } from 'react';
+import { ComponentType } from 'react';
+import { HomarrCardWrapper } from '~/components/Dashboard/Tiles/HomarrCardWrapper';
+import { WidgetsMenu } from '~/components/Dashboard/Tiles/Widgets/WidgetsMenu';
+
 import Widgets from '.';
-import { HomarrCardWrapper } from '../components/Dashboard/Tiles/HomarrCardWrapper';
-import { WidgetsMenu } from '../components/Dashboard/Tiles/Widgets/WidgetsMenu';
 import ErrorBoundary from './boundary';
 import { IWidget } from './widgets';
 
 interface WidgetWrapperProps {
-  widgetId: string;
+  widgetType: string;
   widget: IWidget<string, any>;
   className: string;
   WidgetComponent: ComponentType<{ widget: IWidget<string, any> }>;
@@ -14,26 +15,24 @@ interface WidgetWrapperProps {
 
 // If a property has no value, set it to the default value
 const useWidget = <T extends IWidget<string, any>>(widget: T): T => {
-  const definition = Widgets[widget.id as keyof typeof Widgets];
+  const definition = Widgets[widget.type as keyof typeof Widgets];
 
-  return useMemo(() => {
-    const newProps = { ...widget.properties };
+  const newProps = { ...widget.properties };
 
-    Object.entries(definition.options).forEach(([key, option]) => {
-      if (newProps[key] == null) {
-        newProps[key] = option.defaultValue;
-      }
-    });
+  Object.entries(definition.options).forEach(([key, option]) => {
+    if (newProps[key] == null) {
+      newProps[key] = option.defaultValue;
+    }
+  });
 
-    return {
-      ...widget,
-      properties: newProps,
-    };
-  }, [widget]);
+  return {
+    ...widget,
+    properties: newProps,
+  };
 };
 
 export const WidgetWrapper = ({
-  widgetId,
+  widgetType,
   widget,
   className,
   WidgetComponent,
@@ -41,9 +40,9 @@ export const WidgetWrapper = ({
   const widgetWithDefaultProps = useWidget(widget);
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary integration={widgetType} widget={widgetWithDefaultProps}>
       <HomarrCardWrapper className={className}>
-        <WidgetsMenu integration={widgetId} widget={widgetWithDefaultProps} />
+        <WidgetsMenu integration={widgetType} widget={widgetWithDefaultProps} />
         <WidgetComponent widget={widgetWithDefaultProps} />
       </HomarrCardWrapper>
     </ErrorBoundary>

@@ -4,14 +4,29 @@
     "description": "Zobraz kalendár s pripravovanými vydaniami z podporovaných integrácií.",
     "settings": {
       "title": "Nastavenia mini aplikácie Kalendár",
-      "useSonarrv4": {
-        "label": "Použi Sonarr v4 API"
-      },
-      "sundayStart": {
-        "label": "Začni týždeň v Nedeľu"
-      },
       "radarrReleaseType": {
-        "label": "Typ Radarr releasu"
+        "label": "Typ Radarr releasu",
+        "data": {
+          "inCinemas": "V kinách",
+          "physicalRelease": "Fyzický",
+          "digitalRelease": "Digitálny"
+        }
+      },
+      "hideWeekDays": {
+        "label": "Skryť dni v týždni"
+      },
+      "showUnmonitored": {
+        "label": "Zobraziť nesledované položky"
+      },
+      "fontSize": {
+        "label": "Veľkosť písma",
+        "data": {
+          "xs": "Extra malé",
+          "sm": "Malé",
+          "md": "Stredné",
+          "lg": "Veľké",
+          "xl": "Extra veľké"
+        }
       }
     }
   }

@@ -14,6 +14,14 @@
       "description": ""
     },
     "appereance": {
+      "name": "Appearance",
+      "description": ""
+    },
+    "accessibility": {
+      "name": "",
+      "description": ""
+    },
+    "access": {
       "name": "",
       "description": ""
     }

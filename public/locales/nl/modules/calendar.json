@@ -3,15 +3,30 @@
     "name": "Kalender",
     "description": "Toont een kalender met komende releases, van ondersteunde integraties.",
     "settings": {
-      "title": "Instellingen voor Kalender widget",
-      "useSonarrv4": {
-        "label": "Gebruik Sonarr v4 API"
-      },
-      "sundayStart": {
-        "label": "Begin de week op zondag"
-      },
+      "title": "Instellingen voor kalender widget",
       "radarrReleaseType": {
-        "label": "Radarr release type"
+        "label": "Radarr release type",
+        "data": {
+          "inCinemas": "In de bioscoop",
+          "physicalRelease": "Fysiek",
+          "digitalRelease": "Digitaal"
+        }
+      },
+      "hideWeekDays": {
+        "label": "Weekdagen verbergen"
+      },
+      "showUnmonitored": {
+        "label": "Niet-bewaakte items weergeven"
+      },
+      "fontSize": {
+        "label": "Lettergrootte",
+        "data": {
+          "xs": "Extra klein",
+          "sm": "Klein",
+          "md": "Middel",
+          "lg": "Groot",
+          "xl": "Extra groot"
+        }
       }
     }
   }

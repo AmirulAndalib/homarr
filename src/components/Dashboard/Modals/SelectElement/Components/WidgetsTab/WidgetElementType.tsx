@@ -1,16 +1,18 @@
 import { useModals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
-import { IconChecks, TablerIcon } from '@tabler/icons';
+import { Icon, IconChecks } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
-import { useConfigContext } from '../../../../../../config/provider';
-import { useConfigStore } from '../../../../../../config/store';
-import { IWidget, IWidgetDefinition } from '../../../../../../widgets/widgets';
+import { v4 as uuidv4 } from 'uuid';
+import { useConfigContext } from '~/config/provider';
+import { useConfigStore } from '~/config/store';
+import { IWidget, IWidgetDefinition } from '~/widgets/widgets';
+
 import { useEditModeStore } from '../../../../Views/useEditModeStore';
 import { GenericAvailableElementType } from '../Shared/GenericElementType';
 
 interface WidgetElementTypeProps {
   id: string;
-  image: string | TablerIcon;
+  image: string | Icon;
   disabled?: boolean;
   widget: IWidgetDefinition;
 }
@@ -27,19 +29,23 @@ export const WidgetElementType = ({ id, image, disabled, widget }: WidgetElement
   const getLowestWrapper = () => config?.wrappers.sort((a, b) => a.position - b.position)[0];
 
   const handleAddition = async () => {
-    updateConfig(
+    await updateConfig(
       configName,
       (prev) => ({
         ...prev,
         widgets: [
-          ...prev.widgets.filter((w) => w.id !== widget.id),
+          ...prev.widgets,
           {
-            id: widget.id,
-            properties: Object.entries(widget.options).reduce((prev, [k, v]) => {
-              const newPrev = prev;
-              newPrev[k] = v.defaultValue;
-              return newPrev;
-            }, {} as IWidget<string, any>['properties']),
+            id: uuidv4(),
+            type: widget.id,
+            properties: Object.entries(widget.options).reduce(
+              (prev, [k, v]) => {
+                const newPrev = prev;
+                newPrev[k] = v.defaultValue;
+                return newPrev;
+              },
+              {} as IWidget<string, any>['properties']
+            ),
             area: {
               type: 'wrapper',
               properties: {
@@ -91,13 +97,15 @@ export const WidgetElementType = ({ id, image, disabled, widget }: WidgetElement
       icon: <IconChecks stroke={1.5} />,
       color: 'teal',
     });
+    umami.track('Add widget', { id: widget.id });
   };
 
   return (
     <GenericAvailableElementType
       name={t('descriptor.name')}
-      description={t('descriptor.description')}
+      description={t('descriptor.description') ?? undefined}
       image={image}
+      id={widget.id}
       disabled={disabled}
       handleAddition={handleAddition}
     />

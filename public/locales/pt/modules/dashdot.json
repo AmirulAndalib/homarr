@@ -1,9 +1,12 @@
 {
   "descriptor": {
     "name": "Dash.",
-    "description": "Apresenta os gráficos de um Dash. exemplo externo dentro de Homarr.",
+    "description": "Exibe os gráficos de um Dash. externo. Instância dentro de Homarr.",
     "settings": {
       "title": "Definições para o Dash. widget",
+      "dashName": {
+        "label": "Traço. Nome"
+      },
       "url": {
         "label": "URL do Dash."
       },
@@ -85,7 +88,7 @@
       "noInformation": "Não é possível obter informações do Dash. Você está executando a versão mais recente?",
       "protocolDowngrade": {
         "title": "Downgrade de protocolo detectado",
-        "text": "O protocolo da sua instancia Dash. está sendo inseguro. Uma vez que HTTP não é criptografado e os invasores podem abusar dessa conexão. Certifique-se de que o Dash. está sendo executado em HTTPS ou configure Homarr para HTTP (não recomendado)."
+        "text": "A conexão com sua instância do Dash. está usando HTTP. Isso é um risco de segurança, pois o HTTP não é criptografado e os invasores podem abusar dessa conexão. Certifique-se de que o Dash. esteja usando HTTPS ou faça o downgrade de Homarr para HTTP (não recomendado)."
       }
     },
     "graphs": {

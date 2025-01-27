@@ -1,7 +1,8 @@
 import { SelectItem } from '@mantine/core';
-import { closeModal, ContextModalProps } from '@mantine/modals';
-import { useConfigContext } from '../../../../config/provider';
-import { useConfigStore } from '../../../../config/store';
+import { ContextModalProps, closeModal } from '@mantine/modals';
+import { useConfigContext } from '~/config/provider';
+import { useConfigStore } from '~/config/store';
+
 import widgets from '../../../../widgets';
 import { WidgetChangePositionModalInnerProps } from '../../Tiles/Widgets/WidgetsMenu';
 import { useGridstackStore, useWrapperColumnCount } from '../../Wrappers/gridstack/store';
@@ -54,8 +55,8 @@ export const ChangeWidgetPositionModal = ({
     closeModal(id);
   };
 
-  const widthData = useWidthData(innerProps.widgetId);
-  const heightData = useHeightData(innerProps.widgetId);
+  const widthData = useWidthData(innerProps.widgetType);
+  const heightData = useHeightData(innerProps.widgetType);
 
   return (
     <ChangePositionModal

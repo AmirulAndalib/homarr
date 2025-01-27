@@ -1,23 +1,45 @@
 {
   "descriptor": {
-    "name": "",
-    "description": "",
+    "name": "IFrame",
+    "description": "Вставити будь-який контент з інтернету. Деякі вебсайти можуть обмежувати доступ.",
     "settings": {
-      "title": "",
+      "title": "Налаштування iFrame",
       "embedUrl": {
-        "label": ""
+        "label": "Вставити URL"
       },
       "allowFullScreen": {
-        "label": ""
+        "label": "Дозволити повноекранний режим"
+      },
+      "allowTransparency": {
+        "label": "Забезпечити прозорість"
+      },
+      "allowScrolling": {
+        "label": "Дозволити прокрутку"
+      },
+      "allowPayment": {
+        "label": "Дозволити платіж"
+      },
+      "allowAutoPlay": {
+        "label": "Увімкнути автоматичне відтворення"
+      },
+      "allowMicrophone": {
+        "label": "Увімкнути мікрофон"
+      },
+      "allowCamera": {
+        "label": "Увімкнути камеру"
+      },
+      "allowGeolocation": {
+        "label": "Дозволити геолокацію"
       }
     }
   },
   "card": {
     "errors": {
       "noUrl": {
-        "title": "",
-        "text": ""
-      }
+        "title": "Неправильна URL-адреса",
+        "text": "Переконайтеся, що Ви ввели правильну адресу в налаштуваннях вашого віджета"
+      },
+      "browserSupport": "Ваш браузер не підтримує iframe. Будь ласка, оновіть свій браузер."
     }
   }
 }

@@ -5,7 +5,7 @@
     "settings": {
       "title": "Configurações para o widget de transmissão de vídeo",
       "FeedUrl": {
-        "label": "url do feed"
+        "label": "URL do feed"
       },
       "autoPlay": {
         "label": "Reprodução automática"

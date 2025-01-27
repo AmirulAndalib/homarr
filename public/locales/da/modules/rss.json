@@ -1,19 +1,39 @@
 {
   "descriptor": {
     "name": "RSS Widget",
-    "description": "Griber elementerne fra et RSS-feed og viser dem. Anvendes normalt til online-nyheder",
+    "description": "Med rss-widgetten kan du vise RSS-feeds på dit dashboard.",
     "settings": {
       "title": "Indstillinger for RSS-widget",
       "rssFeedUrl": {
-        "label": "RSS-feed url"
+        "label": "RSS-feed URL'er",
+        "description": "URL'erne for de RSS-feeds, du vil vise fra."
+      },
+      "refreshInterval": {
+        "label": "Opdateringsinterval (i minutter)"
+      },
+      "dangerousAllowSanitizedItemContent": {
+        "label": "Tillad HTML-formatering (Farligt)",
+        "info": "Det kan være farligt at tillade HTML-formatering udefra.<br/>Sørg for, at feedet kommer fra en pålidelig kilde."
+      },
+      "textLinesClamp": {
+        "label": "Klemme til tekstlinjer"
+      },
+      "sortByPublishDateAscending": {
+        "label": "Sorter efter udgivelsesdato (stigende)"
+      },
+      "sortPostsWithoutPublishDateToTheTop": {
+        "label": "Sæt indlæg uden udgivelsesdato øverst"
+      },
+      "maximumAmountOfPosts": {
+        "label": "Maksimalt antal indlæg"
       }
-    }
-  },
-  "card": {
-    "errors": {
-      "general": {
-        "title": "Det er ikke muligt at hente RSS-feed",
-        "text": "Der var et problem med at nå ud til RSS-feedet. Sørg for, at du&apos;har konfigureret feedet korrekt og bruger en gyldig RSS-url, der passer til den officielle standardspecifikation. Når du har opdateret feed'et, skal du muligvis gemme dit dashboard og opdatere siden."
+    },
+    "card": {
+      "errors": {
+        "general": {
+          "title": "Det er ikke muligt at hente RSS-feed",
+          "text": "Der var et problem med at hente RSS-feedet. Sørg for, at du har konfigureret RSS-feedet korrekt ved hjælp af en gyldig URL. URL'er skal stemme overens med den officielle specifikation. Når du har opdateret feed'et, skal du muligvis opdatere dashboardet."
+        }
       }
     }
   }

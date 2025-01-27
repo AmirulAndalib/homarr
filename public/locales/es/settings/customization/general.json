@@ -1,21 +1,29 @@
 {
-  "text": "Las personalizaciones te permiten configurar y ajustar tu experiencia con Homarr, según tus preferencias.",
+  "text": "Las personalizaciones te permiten configurar y ajustar tu experiencia con Homarr según tus preferencias.",
   "accordeon": {
     "layout": {
-      "name": "Disposición",
-      "description": "Activar y desactivar elementos de tu cabecera y tarjetas del dashboard"
+      "name": "Diseño",
+      "description": "Habilita y deshabilita elementos en los mosaicos de su encabezado y panel"
     },
     "gridstack": {
-      "name": "Gridstack",
-      "description": "Personalizar el comportamiento y columnas del área de tu dashboard"
+      "name": "Cuadrícula",
+      "description": "Personaliza el comportamiento y las columnas de la cuadrícula de tu panel"
     },
     "pageMetadata": {
-      "name": "Metadatos de Página",
-      "description": "Ajustar títulos, logo y PWA"
+      "name": "Metadatos de la página",
+      "description": "Ajustar los títulos, el logotipo y PWA"
     },
     "appereance": {
       "name": "Apariencia",
-      "description": "Personalizar la apariencia del fondo, colores y apps"
+      "description": "Personaliza el fondo, los colores y la apariencia de las aplicaciones"
+    },
+    "accessibility": {
+      "name": "Accesibilidad",
+      "description": "Configura Homarr para usuarios con discapacidad y minusvalía"
+    },
+    "access": {
+      "name": "Acceso",
+      "description": "Configura quién tiene acceso a tu tablero"
     }
   }
 }

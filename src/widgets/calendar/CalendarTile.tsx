@@ -1,37 +1,40 @@
-import { createStyles, Group, MantineThemeColors, useMantineTheme } from '@mantine/core';
+import { useMantineTheme } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
-import { IconCalendarTime } from '@tabler/icons';
-import { useQuery } from '@tanstack/react-query';
-import { i18n } from 'next-i18next';
+import { IconCalendarTime } from '@tabler/icons-react';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
-import { useConfigContext } from '../../config/provider';
-import { useColorTheme } from '../../tools/color';
-import { isToday } from '../../tools/isToday';
+import { useEditModeStore } from '~/components/Dashboard/Views/useEditModeStore';
+import { useConfigContext } from '~/config/provider';
+import { getLanguageByCode } from '~/tools/language';
+import { RouterOutputs, api } from '~/utils/api';
+
 import { defineWidget } from '../helper';
 import { IWidget } from '../widgets';
 import { CalendarDay } from './CalendarDay';
+import { getBgColorByDateAndTheme } from './bg-calculator';
 import { MediasType } from './type';
 
 const definition = defineWidget({
   id: 'calendar',
   icon: IconCalendarTime,
   options: {
-    useSonarrv4: {
+    hideWeekDays: {
       type: 'switch',
-      defaultValue: false,
+      defaultValue: true,
     },
-    sundayStart: {
+    showUnmonitored: {
       type: 'switch',
       defaultValue: false,
     },
     radarrReleaseType: {
       type: 'select',
       defaultValue: 'inCinemas',
-      data: [
-        { label: 'In Cinemas', value: 'inCinemas' },
-        { label: 'Physical', value: 'physicalRelease' },
-        { label: 'Digital', value: 'digitalRelease' },
-      ],
+      data: [{ value: 'inCinemas' }, { value: 'physicalRelease' }, { value: 'digitalRelease' }],
+    },
+    fontSize: {
+      type: 'select',
+      defaultValue: 'xs',
+      data: [{ value: 'xs' }, { value: 'sm' }, { value: 'md' }, { value: 'lg' }, { value: 'xl' }],
     },
   },
   gridstack: {
@@ -50,51 +53,103 @@ interface CalendarTileProps {
 }
 
 function CalendarTile({ widget }: CalendarTileProps) {
-  const { secondaryColor } = useColorTheme();
+  const { colorScheme, radius } = useMantineTheme();
   const { name: configName } = useConfigContext();
-  const { classes, cx } = useStyles(secondaryColor);
-  const { colorScheme, colors } = useMantineTheme();
   const [month, setMonth] = useState(new Date());
-
-  const { data: medias } = useQuery({
-    queryKey: ['calendar/medias', { month: month.getMonth(), year: month.getFullYear() }],
-    staleTime: 1000 * 60 * 60 * 5,
-    queryFn: async () =>
-      (await (
-        await fetch(
-          `/api/modules/calendar?year=${month.getFullYear()}&month=${
-            month.getMonth() + 1
-          }&configName=${configName}`
-        )
-      ).json()) as MediasType,
+  const isEditMode = useEditModeStore((x) => x.enabled);
+  const { data: sessionData } = useSession();
+  const { data: userWithSettings } = api.user.withSettings.useQuery(undefined, {
+    enabled: !!sessionData?.user,
   });
 
+  const language = getLanguageByCode(userWithSettings?.settings.language ?? 'en');
+
+  const { data: medias } = api.calendar.medias.useQuery(
+    {
+      configName: configName!,
+      month: month.getMonth() + 1,
+      year: month.getFullYear(),
+      options: {
+        showUnmonitored: widget.properties.showUnmonitored,
+      },
+    },
+    {
+      staleTime: 1000 * 60 * 60 * 5,
+      enabled: isEditMode === false,
+    }
+  );
+
+  const firstDayOfWeek = userWithSettings?.settings.firstDayOfWeek ?? 'monday';
+
   return (
-    <Group grow style={{ height: '100%' }}>
-      <Calendar
-        defaultDate={new Date()}
-        onPreviousMonth={setMonth}
-        onNextMonth={setMonth}
-        size="xs"
-        locale={i18n?.resolvedLanguage ?? 'en'}
-        firstDayOfWeek={widget.properties.sundayStart ? 0 : 1}
-        hideWeekdays
-        date={month}
-        hasNextLevel={false}
-        renderDay={(date) => (
-          <CalendarDay date={date} medias={getReleasedMediasForDate(medias, date, widget)} />
-        )}
-      />
-    </Group>
+    <Calendar
+      defaultDate={new Date()}
+      onPreviousMonth={setMonth}
+      onNextMonth={setMonth}
+      size={widget.properties.fontSize}
+      locale={language.locale}
+      firstDayOfWeek={getFirstDayOfWeek(firstDayOfWeek)}
+      hideWeekdays={widget.properties.hideWeekDays}
+      style={{ position: 'relative' }}
+      date={month}
+      maxLevel="month"
+      styles={{
+        calendarHeader: {
+          maxWidth: 'inherit',
+          marginBottom: '0.35rem !important',
+        },
+        calendarHeaderLevel: {
+          height: '100%',
+        },
+        calendarHeaderControl: {
+          height: '100%',
+        },
+        calendar: {
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+        },
+        monthLevelGroup: {
+          height: '100%',
+        },
+        monthLevel: {
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+        },
+        monthCell: {
+          textAlign: 'center',
+        },
+        month: {
+          flex: 1,
+        },
+        day: {
+          borderRadius: ['xs', 'sm'].includes(widget.properties.fontSize) ? radius.md : radius.lg,
+        },
+      }}
+      getDayProps={(date) => ({
+        bg: getBgColorByDateAndTheme(colorScheme, date),
+      })}
+      renderDay={(date) => (
+        <CalendarDay
+          date={date}
+          medias={getReleasedMediasForDate(medias, date, widget)}
+          size={widget.properties.fontSize}
+        />
+      )}
+    />
   );
 }
 
-const useStyles = createStyles((theme, secondaryColor: keyof MantineThemeColors) => ({
-  weekend: {
-    color: `${secondaryColor} !important`,
-  },
-}));
-
+const getFirstDayOfWeek = (
+  firstDayOfWeek: RouterOutputs['user']['withSettings']['settings']['firstDayOfWeek']
+) => {
+  if (firstDayOfWeek === 'sunday') return 0;
+  if (firstDayOfWeek === 'monday') return 1;
+  return 6;
+};
 const getReleasedMediasForDate = (
   medias: MediasType | undefined,
   date: Date,

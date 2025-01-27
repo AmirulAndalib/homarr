@@ -10,30 +10,79 @@
       "displayCompletedTorrents": {
         "label": "Wyświetlanie ukończonych torrentów"
       },
+      "displayActiveTorrents": {
+        "label": "Wyświetl aktywne torrenty"
+      },
+      "speedLimitOfActiveTorrents": {
+        "label": "Prędkość wysyłania pozwalająca uznać torrent za aktywny (kB/s)"
+      },
       "displayStaleTorrents": {
         "label": "Wyświetlanie nieaktualnych torrentów"
+      },
+      "labelFilterIsWhitelist": {
+        "label": "Lista etykiet jest białą listą (zamiast czarnej listy)"
+      },
+      "labelFilter": {
+        "label": "Lista etykiet",
+        "description": "Po zaznaczeniu opcji \"jest białą listą\" będzie ona działać jako biała lista. Jeśli nie jest zaznaczone, jest to czarna lista. Nie zrobi nic, gdy jest pusta"
+      },
+      "displayRatioWithFilter": {
+        "label": "Wyświetl współczynnik listy przefiltrowanych torrentów",
+        "info": "Jeśli ta opcja jest wyłączona, wyświetlany będzie tylko współczynnik globalny. Współczynnik globalny będzie nadal używał etykiet, jeśli są ustawione"
+      },
+      "columnOrdering": {
+        "label": "Włącz zmianę kolejności kolumn"
+      },
+      "rowSorting": {
+        "label": "Włącz sortowanie wierszy"
+      },
+      "columns": {
+        "label": "Wybierz kolumny do wyświetlenia",
+        "data": {
+          "date": "Data dodania",
+          "down": "Pobieranie",
+          "up": "Udostępnianie",
+          "eta": "ETA",
+          "progress": "Postęp"
+        }
+      },
+      "nameColumnSize": {
+        "label": "Zmień rozmiar kolumny nazwy"
       }
     }
   },
   "card": {
     "footer": {
       "error": "Błąd",
-      "lastUpdated": "Ostatnia aktualizacja {{time}} temu"
+      "lastUpdated": "Ostatnia aktualizacja {{time}} temu",
+      "ratioGlobal": "Współczynnik globalny",
+      "ratioWithFilter": "Współczynnik z filtrem"
     },
     "table": {
       "header": {
+        "isCompleted": "Pobieranie",
         "name": "Nazwa",
+        "dateAdded": "Dodano",
         "size": "Rozmiar",
         "download": "Pobieranie",
         "upload": "Udostępnianie",
         "estimatedTimeOfArrival": "ETA",
-        "progress": "Postęp"
+        "progress": "Postęp",
+        "totalUploaded": "Suma Przesyłania",
+        "totalDownloaded": "Suma pobierania",
+        "ratio": "Proporcja",
+        "seeds": "Seedy (połączone)",
+        "peers": "Peery (połączone)",
+        "label": "Etykieta",
+        "state": "Status",
+        "stateMessage": ""
       },
       "item": {
         "text": "Zarządzany przez {{appName}}, {{ratio}} stosunek"
       },
       "body": {
-        "nothingFound": "Nie znaleziono torrentów"
+        "nothingFound": "Nie znaleziono torrentów",
+        "filterHidingItems": "{{count}} wpisów zostało ukrytych przez twoje filtry"
       }
     },
     "lineChart": {
@@ -51,11 +100,8 @@
       },
       "generic": {
         "title": "Wystąpił nieoczekiwany błąd",
-        "text": "Program Homarr nie mógł się skomunikować z Twoim klientem Torrent. Proszę sprawdzić swoją konfigurację"
+        "text": "Nie można połączyć się z klientami Torrent. Sprawdź konfigurację"
       }
-    },
-    "loading": {
-      "title": "Ładowanie..."
     },
     "popover": {
       "introductionPrefix": "Zarządzany przez",
@@ -63,7 +109,7 @@
         "queuePosition": "Pozycja w kolejce - {{position}}",
         "progress": "Postęp - {{progress}}%",
         "totalSelectedSize": "Razem - {{totalSize}}",
-        "state": "Państwo - {{state}}",
+        "state": "Status - {{state}}",
         "ratio": "Współczynnik -.",
         "completed": "Zakończono"
       }

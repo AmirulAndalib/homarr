@@ -1,27 +1,24 @@
 {
-  "title": "Vitaj späť!",
-  "text": "Prosím zadajte heslo",
+  "metaTitle": "Prihlásiť sa",
+  "title": "Vitaj spat!",
+  "text": "Zadajte svoje prihlasovacie údaje",
   "form": {
     "fields": {
+      "username": {
+        "label": "Používateľské meno"
+      },
       "password": {
-        "label": "Heslo",
-        "placeholder": "Tvoje heslo"
+        "label": "Heslo"
       }
     },
     "buttons": {
       "submit": "Prihlásiť sa"
+    },
+    "afterLoginRedirection": "Po prihlásení budete presmerovaní na stránku {{url}}",
+    "providersEmpty": {
+      "title": "Chyba poskytovateľa autorizácie",
+      "message": "Poskytovateľ(-lia) nie je(sú) nastavený(-í), ďalšie informácie nájdete v záznamoch."
     }
   },
-  "notifications": {
-    "checking": {
-      "title": "Kontrola hesla",
-      "message": "Vaše heslo sa kontroluje..."
-    },
-    "correct": {
-      "title": "Prihlásenie bolo úspešné, prebieha presmerovanie..."
-    },
-    "wrong": {
-      "title": "Zadané heslo je nesprávne, skúste to znova."
-    }
-  }
+  "alert": "Vaše poverovacie údaje sú nesprávne alebo toto konto neexistuje. Skúste to prosím znova."
 }

@@ -1,9 +1,10 @@
 import { GridStack } from 'fily-publish-gridstack';
 import { MutableRefObject, RefObject } from 'react';
-import { AppType } from '../../../types/app';
+import { AppType } from '~/types/app';
+import { WidgetWrapper } from '~/widgets/WidgetWrapper';
+import { IWidget, IWidgetDefinition } from '~/widgets/widgets';
+
 import Widgets from '../../../widgets';
-import { IWidget, IWidgetDefinition } from '../../../widgets/widgets';
-import { WidgetWrapper } from '../../../widgets/WidgetWrapper';
 import { appTileDefinition } from '../Tiles/Apps/AppTile';
 import { GridstackTileWrapper } from '../Tiles/TileWrapper';
 import { useGridstackStore } from './gridstack/store';
@@ -42,7 +43,7 @@ export function WrapperContent({ apps, refs, widgets }: WrapperContentProps) {
         );
       })}
       {widgets.map((widget) => {
-        const definition = Widgets[widget.id as keyof typeof Widgets] as
+        const definition = Widgets[widget.type as keyof typeof Widgets] as
           | IWidgetDefinition
           | undefined;
         if (!definition) return null;
@@ -52,7 +53,7 @@ export function WrapperContent({ apps, refs, widgets }: WrapperContentProps) {
             type="widget"
             key={widget.id}
             itemRef={refs.items.current[widget.id]}
-            id={definition.id}
+            id={widget.id}
             {...definition.gridstack}
             {...widget.shape[shapeSize]?.location}
             {...widget.shape[shapeSize]?.size}
@@ -60,7 +61,7 @@ export function WrapperContent({ apps, refs, widgets }: WrapperContentProps) {
             <WidgetWrapper
               className="grid-stack-item-content"
               widget={widget}
-              widgetId={widget.id}
+              widgetType={widget.type}
               WidgetComponent={definition.component}
             />
           </GridstackTileWrapper>

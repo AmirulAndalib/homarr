@@ -1,0 +1,14 @@
+{
+  "card": {
+    "title": "おっと、エラーが発生しました。",
+    "buttons": {
+      "details": "詳細",
+      "tryAgain": "リトライ"
+    }
+  },
+  "modal": {
+    "text": "",
+    "label": "",
+    "reportButton": ""
+  }
+}

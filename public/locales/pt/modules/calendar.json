@@ -4,14 +4,29 @@
     "description": "Apresenta um calendário com os próximos lançamentos, a partir das integrações suportadas.",
     "settings": {
       "title": "Definições para o widget Calendário",
-      "useSonarrv4": {
-        "label": "Utilizar Sonarr v4 API"
-      },
-      "sundayStart": {
-        "label": "Comece a semana no Domingo"
-      },
       "radarrReleaseType": {
-        "label": "Tipo de libertação de Radarr"
+        "label": "Tipo de libertação de Radarr",
+        "data": {
+          "inCinemas": "Nos cinemas",
+          "physicalRelease": "Físico",
+          "digitalRelease": "Digital"
+        }
+      },
+      "hideWeekDays": {
+        "label": "Ocultar dias da semana"
+      },
+      "showUnmonitored": {
+        "label": "Mostrar itens não monitorados"
+      },
+      "fontSize": {
+        "label": "Tamanho da fonte",
+        "data": {
+          "xs": "Extra pequeno",
+          "sm": "Pequeno",
+          "md": "Médio",
+          "lg": "Grande",
+          "xl": "Extragrande"
+        }
       }
     }
   }

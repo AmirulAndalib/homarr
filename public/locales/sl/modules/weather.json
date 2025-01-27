@@ -7,6 +7,15 @@
       "displayInFahrenheit": {
         "label": "Prikaz v Fahrenheitu"
       },
+      "displayCityName": {
+        "label": "Prikaži ime mesta"
+      },
+      "displayWeekly": {
+        "label": ""
+      },
+      "forecastDays": {
+        "label": ""
+      },
       "location": {
         "label": "Lokacija vremena"
       }
@@ -29,5 +38,6 @@
       "thunderstormWithHail": "Nevihta s točo",
       "unknown": "Neznano"
     }
-  }
+  },
+  "error": "Zgodila se je napaka"
 }

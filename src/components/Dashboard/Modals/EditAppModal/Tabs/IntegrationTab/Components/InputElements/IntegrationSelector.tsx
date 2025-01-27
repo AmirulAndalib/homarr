@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import { Group, Select, SelectItem, Text } from '@mantine/core';
+import { Group, Image, Select, SelectItem, Text } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import { useTranslation } from 'next-i18next';
 import { forwardRef } from 'react';
 import {
-  IntegrationField,
-  integrationFieldDefinitions,
-  integrationFieldProperties,
   AppIntegrationPropertyType,
   AppIntegrationType,
   AppType,
-} from '../../../../../../../../types/app';
+  IntegrationField,
+  integrationFieldDefinitions,
+  integrationFieldProperties,
+} from '~/types/app';
 
 interface IntegrationSelectorProps {
   form: UseFormReturnType<AppType, (item: AppType) => AppType>;
@@ -19,73 +19,9 @@ interface IntegrationSelectorProps {
 export const IntegrationSelector = ({ form }: IntegrationSelectorProps) => {
   const { t } = useTranslation('layout/modals/add-app');
 
-  const data: SelectItem[] = [
-    {
-      value: 'sabnzbd',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/sabnzbd.png',
-      label: 'SABnzbd',
-    },
-    {
-      value: 'nzbGet',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/nzbget.png',
-      label: 'NZBGet',
-    },
-    {
-      value: 'deluge',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/deluge.png',
-      label: 'Deluge',
-    },
-    {
-      value: 'transmission',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/transmission.png',
-      label: 'Transmission',
-    },
-    {
-      value: 'qBittorrent',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/qbittorrent.png',
-      label: 'qBittorrent',
-    },
-    {
-      value: 'jellyseerr',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyseerr.png',
-      label: 'Jellyseerr',
-    },
-    {
-      value: 'overseerr',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/overseerr.png',
-      label: 'Overseerr',
-    },
-    {
-      value: 'sonarr',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/sonarr.png',
-      label: 'Sonarr',
-    },
-    {
-      value: 'radarr',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/radarr.png',
-      label: 'Radarr',
-    },
-    {
-      value: 'lidarr',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/lidarr.png',
-      label: 'Lidarr',
-    },
-    {
-      value: 'readarr',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/readarr.png',
-      label: 'Readarr',
-    },
-    {
-      value: 'jellyfin',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyfin.png',
-      label: 'Jellyfin',
-    },
-    {
-      value: 'plex',
-      image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/plex.png',
-      label: 'Plex',
-    },
-  ].filter((x) => Object.keys(integrationFieldProperties).includes(x.value));
+  const data = availableIntegrations.filter((x) =>
+    Object.keys(integrationFieldProperties).includes(x.value)
+  );
 
   const getNewProperties = (value: string | null): AppIntegrationPropertyType[] => {
     if (!value) return [];
@@ -112,7 +48,7 @@ export const IntegrationSelector = ({ form }: IntegrationSelectorProps) => {
     <Select
       label={t('integration.type.label')}
       description={t('integration.type.description')}
-      placeholder={t('integration.type.placeholder')}
+      placeholder={t('integration.type.placeholder') ?? undefined}
       itemComponent={SelectItemComponent}
       data={data}
       maxDropdownHeight={250}
@@ -128,11 +64,12 @@ export const IntegrationSelector = ({ form }: IntegrationSelectorProps) => {
       }
       icon={
         form.values.integration?.type && (
-          <img
+          <Image
             src={data.find((x) => x.value === form.values.integration?.type)?.image}
             alt="integration"
             width={20}
             height={20}
+            fit="contain"
           />
         )
       }
@@ -155,7 +92,7 @@ const SelectItemComponent = forwardRef<HTMLDivElement, ItemProps>(
   ({ image, label, description, ...others }: ItemProps, ref) => (
     <div ref={ref} {...others}>
       <Group noWrap>
-        <img src={image} alt="integration icon" width={20} height={20} />
+        <Image src={image} alt="integration icon" width={20} height={20} fit="contain" />
 
         <div>
           <Text size="sm">{label}</Text>
@@ -169,3 +106,106 @@ const SelectItemComponent = forwardRef<HTMLDivElement, ItemProps>(
     </div>
   )
 );
+
+export const availableIntegrations = [
+  {
+    value: 'sabnzbd',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/sabnzbd.png',
+    label: 'SABnzbd',
+  },
+  {
+    value: 'nzbGet',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/nzbget.png',
+    label: 'NZBGet',
+  },
+  {
+    value: 'deluge',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/deluge.png',
+    label: 'Deluge',
+  },
+  {
+    value: 'transmission',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/transmission.png',
+    label: 'Transmission',
+  },
+  {
+    value: 'qBittorrent',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/qbittorrent.png',
+    label: 'qBittorrent',
+  },
+  {
+    value: 'jellyseerr',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyseerr.png',
+    label: 'Jellyseerr',
+  },
+  {
+    value: 'overseerr',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/overseerr.png',
+    label: 'Overseerr',
+  },
+  {
+    value: 'sonarr',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/sonarr.png',
+    label: 'Sonarr',
+  },
+  {
+    value: 'radarr',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/radarr.png',
+    label: 'Radarr',
+  },
+  {
+    value: 'lidarr',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/lidarr.png',
+    label: 'Lidarr',
+  },
+  {
+    value: 'readarr',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/readarr.png',
+    label: 'Readarr',
+  },
+  {
+    value: 'prowlarr',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/prowlarr.png',
+    label: 'Prowlarr',
+  },
+  {
+    value: 'jellyfin',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyfin.png',
+    label: 'Jellyfin (and Emby)',
+  },
+  {
+    value: 'plex',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/plex.png',
+    label: 'Plex',
+  },
+  {
+    value: 'pihole',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/pi-hole.png',
+    label: 'PiHole',
+  },
+  {
+    value: 'adGuardHome',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/adguard-home.png',
+    label: 'AdGuard Home',
+  },
+  {
+    value: 'homeAssistant',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/home-assistant.png',
+    label: 'Home Assistant',
+  },
+  {
+    value: 'openmediavault',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/openmediavault.png',
+    label: 'OpenMediaVault',
+  },
+  {
+    value: 'proxmox',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/proxmox.png',
+    label: 'Proxmox',
+  },
+  {
+    value: 'tdarr',
+    image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tdarr.png',
+    label: 'Tdarr',
+  }
+] as const satisfies Readonly<SelectItem[]>;

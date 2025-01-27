@@ -1,15 +1,28 @@
 {
   "save": "Lagre",
+  "apply": "Bruk",
+  "insert": "Sett inn",
   "about": "Info",
   "cancel": "Avbryt",
   "close": "Lukk",
+  "back": "Tilbake",
   "delete": "Slett",
   "ok": "OK",
   "edit": "Rediger",
+  "next": "Neste",
+  "previous": "Tidligere",
+  "confirm": "Bekreft",
+  "enabled": "Aktivert",
+  "duplicate": "Dupliser",
+  "disabled": "Deaktivert",
+  "enableAll": "Aktiver alle",
+  "disableAll": "Deaktiver alle",
+  "setTimer": "",
   "version": "Versjon",
   "changePosition": "Endre posisjon",
   "remove": "Fjern",
   "removeConfirm": "Er du sikker på at du vil fjerne {{item}}?",
+  "createItem": "+ opprett {{item}}",
   "sections": {
     "settings": "Innstillinger",
     "dangerZone": "Faresonen"
@@ -30,5 +43,17 @@
     "small": "liten",
     "medium": "middels",
     "large": "stor"
-  }
+  },
+  "seeMore": "Se mer...",
+  "position": {
+    "left": "Venstre",
+    "center": "Midtstilt",
+    "right": "Høyre"
+  },
+  "attributes": {
+    "width": "Bredde",
+    "height": "Høyde"
+  },
+  "public": "Offentlig",
+  "restricted": "Begrenset"
 }

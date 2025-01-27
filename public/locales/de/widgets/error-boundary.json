@@ -1,0 +1,14 @@
+{
+  "card": {
+    "title": "Ups, ein Fehler ist aufgetreten!",
+    "buttons": {
+      "details": "Details",
+      "tryAgain": "Erneut versuchen"
+    }
+  },
+  "modal": {
+    "text": "Das Widet ist unerwartet abgestürzt. Bitte lesen Sie die Dokumentation und beheben Sie etwaige Tippfehler.",
+    "label": "Fehler aufgetreten",
+    "reportButton": "Diesen Fehler auf GitHub melden"
+  }
+}

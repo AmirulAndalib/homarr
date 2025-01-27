@@ -4,8 +4,30 @@
     "description": "Viser gjeldende dato og klokkeslett.",
     "settings": {
       "title": "Innstillinger for dato og klokkeslett widget",
+      "timezone": {
+        "label": "Tidssone",
+        "info": "Velg navnet på tidssonen din, finn din her: "
+      },
+      "customTitle": {
+        "label": "Bynavn eller egendefinert tittel"
+      },
       "display24HourFormat": {
         "label": "Vis 24 timers formatering"
+      },
+      "dateFormat": {
+        "label": "Datoformatering",
+        "data": {
+          "hide": "Skjul dato"
+        }
+      },
+      "titleState": {
+        "label": "Klokketittel",
+        "info": "Den egendefinerte tittelen og tidssonekoden kan vises på widgeten din.<br/>Du kan også vise byen alene, vise ingen,<br/>eller til og med vise tidssonen alene når begge er valgt, men ingen tittel er gitt.",
+        "data": {
+          "both": "Tittel og tidssone",
+          "city": "Kun tittel",
+          "none": "Ingen"
+        }
       }
     }
   }

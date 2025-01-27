@@ -1,15 +1,28 @@
 {
   "save": "Opslaan",
+  "apply": "Toepassen",
+  "insert": "Invoegen",
   "about": "Over",
-  "cancel": "Annuleer",
+  "cancel": "Annuleren",
   "close": "Sluiten",
-  "delete": "Verwijder",
-  "ok": "OK",
-  "edit": "Wijzig",
+  "back": "Terug",
+  "delete": "Verwijderen",
+  "ok": "Oké",
+  "edit": "Wijzigen",
+  "next": "Volgende",
+  "previous": "Vorige",
+  "confirm": "Bevestigen",
+  "enabled": "Ingeschakeld",
+  "duplicate": "Dupliceren",
+  "disabled": "Uitgeschakeld",
+  "enableAll": "Alles inschakelen",
+  "disableAll": "Alles uitschakelen",
+  "setTimer": "Timer instellen",
   "version": "Versie",
   "changePosition": "Positie wijzigen",
-  "remove": "Verwijder",
-  "removeConfirm": "Weet u zeker dat u {{item}} wilt verwijderen?",
+  "remove": "Verwijderen",
+  "removeConfirm": "Weet je zeker dat je {{item}} wilt verwijderen?",
+  "createItem": "+ {{item}} aanmaken",
   "sections": {
     "settings": "Instellingen",
     "dangerZone": "Gevarenzone"
@@ -25,10 +38,22 @@
     "minutes": "minuten",
     "hours": "uren"
   },
-  "loading": "Bezig met laden...",
+  "loading": "Zie meer…",
   "breakPoints": {
     "small": "klein",
-    "medium": "gemiddeld",
+    "medium": "middel",
     "large": "groot"
-  }
+  },
+  "seeMore": "Zie meer...",
+  "position": {
+    "left": "Links",
+    "center": "Centreren",
+    "right": "Rechts"
+  },
+  "attributes": {
+    "width": "Breedte",
+    "height": "Hoogte"
+  },
+  "public": "Openbaar",
+  "restricted": "Beperkt"
 }

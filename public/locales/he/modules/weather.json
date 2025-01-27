@@ -7,6 +7,15 @@
       "displayInFahrenheit": {
         "label": "פרנהייט"
       },
+      "displayCityName": {
+        "label": "הצגת שם העיר"
+      },
+      "displayWeekly": {
+        "label": "הצג תחזית שבועית"
+      },
+      "forecastDays": {
+        "label": "ימים לתצוגה"
+      },
       "location": {
         "label": "מיקום מזג האוויר"
       }
@@ -29,5 +38,6 @@
       "thunderstormWithHail": "סופת רעמים עם ברד",
       "unknown": "לא ידוע"
     }
-  }
+  },
+  "error": "אירעה שגיאה"
 }

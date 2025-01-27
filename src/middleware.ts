@@ -1,32 +1,55 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export function middleware(req: NextRequest) {
-  const { cookies } = req;
+import { getUrl } from './tools/server/url';
+import { client } from './utils/api';
 
-  // Don't even bother with the middleware if there is no defined password
-  if (!process.env.PASSWORD) return NextResponse.next();
+const skippedUrls = [
+  '/onboard',
+  '/api/',
+  '/_next/',
+  '/favicon.ico',
+  '/404',
+  '/pages/_app',
+  '/auth/login',
+  '/imgs/',
+];
 
+let cachedUserCount = 0;
+
+export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
-  const passwordCookie = cookies.get('password')?.value;
 
-  const isCorrectPassword = passwordCookie?.toString() === process.env.PASSWORD;
-  // Skip the middleware if the URL is 'login', 'api/configs/tryPassword', '_next/*', 'favicon.ico', '404', 'migrate' or 'pages/_app'
-  const skippedUrls = [
-    '/login',
-    '/api/configs/tryPassword',
-    '/_next/',
-    '/favicon.ico',
-    '/404',
-    '/migrate',
-    '/pages/_app',
-  ];
+  // Do not redirect if the url is in the skippedUrls array
   if (skippedUrls.some((skippedUrl) => url.pathname.startsWith(skippedUrl))) {
     return NextResponse.next();
   }
-  // If the password is not correct, redirect to the login page
-  if (!isCorrectPassword && process.env.PASSWORD) {
-    url.pathname = '/login';
-    return NextResponse.rewrite(url);
+
+  // Do not redirect if we are on Vercel
+  if (process.env.VERCEL) {
+    return NextResponse.next();
   }
-  return NextResponse.next();
+
+  // Do not redirect if there are users in the database
+  if (cachedUserCount > 0 || !(await shouldRedirectToOnboard())) {
+    // redirect to login if not logged in
+    // not working, should work in next-auth 5
+    // @see https://github.com/nextauthjs/next-auth/pull/7443
+
+    // const session = await getServerSession();
+    // if (!session?.user) {
+    //   return NextResponse.redirect(getUrl(req) + '/auth/login')
+    // }
+    return NextResponse.next();
+  }
+
+  return NextResponse.redirect(getUrl(req) + '/onboard');
 }
+
+const shouldRedirectToOnboard = async (): Promise<boolean> => {
+  const cacheAndGetUserCount = async () => {
+    cachedUserCount = await client.user.count.query();
+    return cachedUserCount === 0;
+  };
+
+  return await cacheAndGetUserCount();
+};

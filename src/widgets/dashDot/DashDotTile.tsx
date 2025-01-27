@@ -1,18 +1,20 @@
-import { Center, createStyles, Grid, Stack, Text, Title } from '@mantine/core';
-import { IconUnlink } from '@tabler/icons';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { Center, Grid, Stack, Text, Title, createStyles } from '@mantine/core';
+import { IconUnlink } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
-import { useConfigContext } from '../../config/provider';
+import { api } from '~/utils/api';
+
 import { defineWidget } from '../helper';
 import { IWidget } from '../widgets';
-import { DashDotInfo } from './DashDotCompactNetwork';
 import { DashDotGraph } from './DashDotGraph';
 
 const definition = defineWidget({
   id: 'dashdot',
   icon: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/dashdot.png',
   options: {
+    dashName: {
+      type: 'text',
+      defaultValue: 'Dash.',
+    },
     url: {
       type: 'text',
       defaultValue: '',
@@ -157,7 +159,7 @@ function DashDotTile({ widget }: DashDotTileProps) {
   const detectedProtocolDowngrade =
     locationProtocol === 'https:' && dashDotUrl.toLowerCase().startsWith('http:');
 
-  const { data: info } = useDashDotInfo({
+  const { data: info } = useDashDotInfoQuery({
     dashDotUrl,
     enabled: !detectedProtocolDowngrade,
   });
@@ -176,11 +178,11 @@ function DashDotTile({ widget }: DashDotTileProps) {
     );
   }
 
-  const { graphsOrder, usePercentages, columns, graphHeight } = widget.properties;
+  const { dashName, graphsOrder, usePercentages, columns, graphHeight } = widget.properties;
 
   return (
     <Stack spacing="xs">
-      <Title order={3}>{t('card.title')}</Title>
+      <Title order={3}>{dashName || t('card.title')}</Title>
       {!info && <p>{t('card.errors.noInformation')}</p>}
       {info && (
         <div className={classes.graphsContainer}>
@@ -206,29 +208,16 @@ function DashDotTile({ widget }: DashDotTileProps) {
     </Stack>
   );
 }
-
-const useDashDotInfo = ({ dashDotUrl, enabled }: { dashDotUrl: string; enabled: boolean }) => {
-  const { name: configName } = useConfigContext();
-  return useQuery({
-    refetchInterval: 50000,
-    queryKey: [
-      'dashdot/info',
-      {
-        configName,
-        dashDotUrl,
-      },
-    ],
-    queryFn: () => fetchDashDotInfo(configName),
-    enabled,
-  });
-};
-
-const fetchDashDotInfo = async (configName: string | undefined) => {
-  if (!configName) return {} as DashDotInfo;
-  return (await (
-    await axios.get('/api/modules/dashdot/info', { params: { configName } })
-  ).data) as DashDotInfo;
-};
+const useDashDotInfoQuery = ({ dashDotUrl, enabled }: { dashDotUrl: string; enabled: boolean }) =>
+  api.dashDot.info.useQuery(
+    {
+      url: dashDotUrl,
+    },
+    {
+      refetchInterval: 50000,
+      enabled,
+    }
+  );
 
 export const useDashDotTileStyles = createStyles((theme) => ({
   graphsContainer: {

@@ -7,6 +7,15 @@
       "displayInFahrenheit": {
         "label": "Weergeven in Fahrenheit"
       },
+      "displayCityName": {
+        "label": "Plaatsnaam weergeven"
+      },
+      "displayWeekly": {
+        "label": "Wekelijkse voorspelling weergeven"
+      },
+      "forecastDays": {
+        "label": "Dagen om weer te geven"
+      },
       "location": {
         "label": "Weerslocatie"
       }
@@ -29,5 +38,6 @@
       "thunderstormWithHail": "Onweer met hagel",
       "unknown": "Onbekend"
     }
-  }
+  },
+  "error": "Er is een fout opgetreden"
 }
