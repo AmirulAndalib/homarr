@@ -1,18 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import { NormalizedTorrent } from '@ctrl/shared-torrent';
 import {
   Badge,
   Flex,
   Group,
   List,
   MantineColor,
-  Popover,
   Progress,
   Stack,
   Text,
-  useMantineTheme,
+  useMantineTheme
 } from '@mantine/core';
-import { useDisclosure, useElementSize } from '@mantine/hooks';
 import {
   IconAffiliate,
   IconDatabase,
@@ -22,88 +19,19 @@ import {
   IconPercentage,
   IconSortDescending,
   IconUpload,
-} from '@tabler/icons';
+} from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
-import { calculateETA } from '../../tools/client/calculateEta';
-import { humanFileSize } from '../../tools/humanFileSize';
-import { AppType } from '../../types/app';
+import { humanFileSize } from '~/tools/humanFileSize';
+import { AppType } from '~/types/app';
+import { TorrentTotalDownload } from '~/types/api/downloads/queue/NormalizedDownloadQueueResponse';
 
 interface TorrentQueueItemProps {
-  torrent: NormalizedTorrent;
+  torrent: TorrentTotalDownload['torrents'][0];
   app?: AppType;
+  width: number;
 }
 
-export const BitTorrrentQueueItem = ({ torrent, app }: TorrentQueueItemProps) => {
-  const [popoverOpened, { open: openPopover, close: closePopover }] = useDisclosure(false);
-  const theme = useMantineTheme();
-  const { width } = useElementSize();
-  const { t } = useTranslation('modules/torrents-status');
-
-  const downloadSpeed = torrent.downloadSpeed / 1024 / 1024;
-  const uploadSpeed = torrent.uploadSpeed / 1024 / 1024;
-  const size = torrent.totalSelected;
-  return (
-    <tr key={torrent.id}>
-      <td>
-        <Popover opened={popoverOpened} radius="md" shadow="md" width={350} withinPortal>
-          <Popover.Dropdown>
-            <TorrentQueuePopover torrent={torrent} app={app} />
-          </Popover.Dropdown>
-          <Popover.Target>
-            <div onMouseEnter={openPopover} onMouseLeave={closePopover}>
-              <Text
-                style={{
-                  maxWidth: '30vw',
-                }}
-                size="xs"
-                lineClamp={1}
-              >
-                {torrent.name}
-              </Text>
-              {app && (
-                <Text size="xs" color="dimmed">
-                  {t('card.table.item.text', {
-                    appName: app.name,
-                    ratio: torrent.ratio.toFixed(2),
-                  })}
-                </Text>
-              )}
-            </div>
-          </Popover.Target>
-        </Popover>
-      </td>
-      <td>
-        <Text size="xs">{humanFileSize(size, false)}</Text>
-      </td>
-      {theme.fn.largerThan('xs') && (
-        <td>
-          <Text size="xs">{downloadSpeed > 0 ? `${downloadSpeed.toFixed(1)} Mb/s` : '-'}</Text>
-        </td>
-      )}
-      {theme.fn.largerThan('xs') && (
-        <td>
-          <Text size="xs">{uploadSpeed > 0 ? `${uploadSpeed.toFixed(1)} Mb/s` : '-'}</Text>
-        </td>
-      )}
-      {theme.fn.largerThan('xs') && (
-        <td>
-          <Text size="xs">{torrent.eta <= 0 ? '∞' : calculateETA(torrent.eta)}</Text>
-        </td>
-      )}
-      <td>
-        <Text>{(torrent.progress * 100).toFixed(1)}%</Text>
-        <Progress
-          radius="lg"
-          color={torrent.progress === 1 ? 'green' : torrent.state === 'paused' ? 'yellow' : 'blue'}
-          value={torrent.progress * 100}
-          size="lg"
-        />
-      </td>
-    </tr>
-  );
-};
-
-const TorrentQueuePopover = ({ torrent, app }: TorrentQueueItemProps) => {
+export const TorrentQueuePopover = ({ torrent, app }: Omit<TorrentQueueItemProps, 'width'>) => {
   const { t } = useTranslation('modules/torrents-status');
   const { colors } = useMantineTheme();
 

@@ -1,0 +1,14 @@
+{
+  "card": {
+    "title": "出錯了！",
+    "buttons": {
+      "details": "詳情",
+      "tryAgain": "請再試一次"
+    }
+  },
+  "modal": {
+    "text": "",
+    "label": "",
+    "reportButton": ""
+  }
+}

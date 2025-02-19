@@ -7,6 +7,15 @@
       "displayInFahrenheit": {
         "label": "Zobrazenie vo stupňoch Fahrenheita"
       },
+      "displayCityName": {
+        "label": "Zobrazenie názvu mesta"
+      },
+      "displayWeekly": {
+        "label": "Zobraziť týždennú predpoveď"
+      },
+      "forecastDays": {
+        "label": "Dni na zobrazenie"
+      },
       "location": {
         "label": "Poloha počasia"
       }
@@ -29,5 +38,6 @@
       "thunderstormWithHail": "Búrka s krúpami",
       "unknown": "Neznámy"
     }
-  }
+  },
+  "error": "Vyskytla sa chyba"
 }

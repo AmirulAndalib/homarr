@@ -1,19 +1,39 @@
 {
   "descriptor": {
     "name": "RSS-Widget",
-    "description": "Nimmt die Einträge aus einem RSS-Feed und zeigt sie an. Wird üblicherweise für Online-Nachrichten verwendet",
+    "description": "Mit dem RSS-Widget können Sie RSS-Feeds auf Ihrem Dashboard anzeigen.",
     "settings": {
       "title": "Einstellungen für das RSS-Widget",
       "rssFeedUrl": {
-        "label": "RSS-Feed URL"
+        "label": "RSS-Feed URL",
+        "description": "Die URLs der RSS Feeds, die angezeigt werden sollen."
+      },
+      "refreshInterval": {
+        "label": "Aktualisierungsintervall (in Minuten)"
+      },
+      "dangerousAllowSanitizedItemContent": {
+        "label": "HTML-Formatierung zulassen (Bedenklich)",
+        "info": "Das Zulassen von HTML-Formatierungen von außen könnte gefährlich sein.<br/>Bitte stellen Sie sicher, dass der Feed von einer vertrauenswürdigen Quelle stammt."
+      },
+      "textLinesClamp": {
+        "label": "Textzeilen Klammer"
+      },
+      "sortByPublishDateAscending": {
+        "label": "Nach Veröffentlichungsdatum sortieren (aufsteigend)"
+      },
+      "sortPostsWithoutPublishDateToTheTop": {
+        "label": "Platzieren Sie Beiträge ohne Veröffentlichungsdatum ganz oben"
+      },
+      "maximumAmountOfPosts": {
+        "label": "Maximale Anzahl an Beiträgen"
       }
-    }
-  },
-  "card": {
-    "errors": {
-      "general": {
-        "title": "RSS-Feed konnte nicht abgerufen werden",
-        "text": "Es gab ein Problem beim Erreichen des RSS-Feeds. Vergewissern Sie sich, dass Sie den Feed richtig konfiguriert haben und eine gültige RSS-URL verwenden, die der offiziellen Standardspezifikation entspricht. Nachdem Sie den Feed aktualisiert haben, müssen Sie möglicherweise Ihr Dashboard speichern und die Seite aktualisieren."
+    },
+    "card": {
+      "errors": {
+        "general": {
+          "title": "RSS Feed konnte nicht abgerufen werden",
+          "text": "Es ist ein Fehler beim Erreichen des RSS Feeds passiert. Stelle sicher, dass die eingetragene URL des RSS Feeds richtig ist. URLs sollten den offiziellen Spezifikationen entsprechen. Nach einem Update des Feeds muss möglicherweise die Dashboard-Seite aktualisiert werden."
+        }
       }
     }
   }

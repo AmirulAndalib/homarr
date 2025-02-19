@@ -4,14 +4,29 @@
     "description": "Hiển thị lịch cùng các phát hành sắp tới, từ các tích hợp được hỗ trợ.",
     "settings": {
       "title": "Cài đặt cho tiện ích lịch",
-      "useSonarrv4": {
-        "label": "Dùng Sonarr v4 API"
-      },
-      "sundayStart": {
-        "label": "Đặt đầu tuần là Chủ Nhật"
-      },
       "radarrReleaseType": {
-        "label": "Loại phát hành Radarr"
+        "label": "Loại phát hành Radarr",
+        "data": {
+          "inCinemas": "trong rạp chiếu phim",
+          "physicalRelease": "Thuộc vật chất",
+          "digitalRelease": "Điện tử"
+        }
+      },
+      "hideWeekDays": {
+        "label": "Ẩn ngày trong tuần"
+      },
+      "showUnmonitored": {
+        "label": "Hiển thị các mục không được giám sát"
+      },
+      "fontSize": {
+        "label": "Cỡ chữ",
+        "data": {
+          "xs": "Rất nhỏ",
+          "sm": "Bé nhỏ",
+          "md": "Trung bình",
+          "lg": "Lớn",
+          "xl": "Cực lớn"
+        }
       }
     }
   }

@@ -7,11 +7,29 @@
       "useSonarrv4": {
         "label": ""
       },
-      "sundayStart": {
-        "label": "Start teh week on Sunday"
-      },
       "radarrReleaseType": {
-        "label": "Radarr Release Type"
+        "label": "Radarr Release Type",
+        "data": {
+          "inCinemas": "",
+          "physicalRelease": "",
+          "digitalRelease": ""
+        }
+      },
+      "hideWeekDays": {
+        "label": ""
+      },
+      "showUnmonitored": {
+        "label": ""
+      },
+      "fontSize": {
+        "label": "",
+        "data": {
+          "xs": "",
+          "sm": "",
+          "md": "",
+          "lg": "",
+          "xl": ""
+        }
       }
     }
   }

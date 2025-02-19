@@ -1,8 +1,9 @@
-import { ActionIcon, createStyles, Space } from '@mantine/core';
+import { ActionIcon, Space, createStyles } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconChevronLeft, IconChevronRight } from '@tabler/icons';
-import { useConfigContext } from '../../../../config/provider';
-import { useScreenLargerThan } from '../../../../hooks/useScreenLargerThan';
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
+import { useConfigContext } from '~/config/provider';
+import { useScreenLargerThan } from '~/hooks/useScreenLargerThan';
+
 import { MobileRibbonSidebarDrawer } from './MobileRibbonSidebarDrawer';
 
 export const MobileRibbons = () => {

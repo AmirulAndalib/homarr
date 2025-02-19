@@ -15,7 +15,15 @@
     },
     "appereance": {
       "name": "Videz",
-      "description": "Prilagodite ozadje, barve in videz aplikacij"
+      "description": "Prilagodite ozadje, barve in videz aplikacije"
+    },
+    "accessibility": {
+      "name": "Dostopnost",
+      "description": "Konfiguracija sistema Homarr za uporabnike invalide in osebe s posebnimi potrebami"
+    },
+    "access": {
+      "name": "Dostop",
+      "description": "Konfigurirajte, kdo ima dostop do vašega odbora"
     }
   }
 }

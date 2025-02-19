@@ -1,28 +1,36 @@
 import {
-  ActionIcon,
   Alert,
   Center,
   Code,
   Group,
+  List,
   Pagination,
+  Popover,
   Progress,
   Skeleton,
   Stack,
   Table,
   Text,
   Title,
-  Tooltip,
   useMantineTheme,
 } from '@mantine/core';
 import { useElementSize } from '@mantine/hooks';
-import { IconAlertCircle, IconPlayerPause, IconPlayerPlay } from '@tabler/icons';
-import { AxiosError } from 'axios';
+import {
+  IconAlertCircle,
+  IconClock,
+  IconClockPause,
+  IconFileDownload,
+  IconFileInfo,
+  IconPercentage,
+} from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import { useTranslation } from 'next-i18next';
 import { FunctionComponent, useState } from 'react';
-import { useGetUsenetDownloads } from '../../hooks/widgets/dashDot/api';
-import { humanFileSize } from '../../tools/humanFileSize';
+import { parseDuration } from '~/tools/client/parseDuration';
+import { humanFileSize } from '~/tools/humanFileSize';
+
+import { useGetUsenetDownloads } from '../dashDot/api';
 
 dayjs.extend(duration);
 
@@ -70,7 +78,7 @@ export const UsenetQueueList: FunctionComponent<UsenetQueueListProps> = ({ appId
         >
           {t('queue.error.message')}
           <Code mt="sm" block>
-            {(error as AxiosError)?.response?.data as string}
+            {error.message}
           </Code>
         </Alert>
       </Group>
@@ -91,7 +99,6 @@ export const UsenetQueueList: FunctionComponent<UsenetQueueListProps> = ({ appId
       <Table highlightOnHover style={{ tableLayout: 'fixed' }} ref={ref}>
         <thead>
           <tr>
-            <th style={{ width: 32 }} />
             <th style={{ width: '75%' }}>{t('queue.header.name')}</th>
             {sizeBreakpoint < width ? (
               <th style={{ width: 100 }}>{t('queue.header.size')}</th>
@@ -106,68 +113,81 @@ export const UsenetQueueList: FunctionComponent<UsenetQueueListProps> = ({ appId
         </thead>
         <tbody>
           {data.items.map((nzb) => (
-            <tr key={nzb.id}>
-              <td>
-                {nzb.state === 'paused' ? (
-                  <Tooltip label="NOT IMPLEMENTED">
-                    <ActionIcon color="gray" variant="subtle" radius="xl" size="sm">
-                      <IconPlayerPlay size="16" />
-                    </ActionIcon>
-                  </Tooltip>
-                ) : (
-                  <Tooltip label="NOT IMPLEMENTED">
-                    <ActionIcon color="primary" variant="subtle" radius="xl" size="sm">
-                      <IconPlayerPause size="16" />
-                    </ActionIcon>
-                  </Tooltip>
-                )}
-              </td>
-              <td>
-                <Tooltip position="top" label={nzb.name}>
-                  <Text
-                    style={{
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}
-                    size="xs"
-                    color={nzb.state === 'paused' ? 'dimmed' : undefined}
-                  >
-                    {nzb.name}
-                  </Text>
-                </Tooltip>
-              </td>
-              {sizeBreakpoint < width ? (
-                <td>
-                  <Text size="xs">{humanFileSize(nzb.size)}</Text>
-                </td>
-              ) : null}
-              <td>
-                {nzb.eta <= 0 ? (
-                  <Text size="xs" color="dimmed">
-                    {t('queue.paused')}
-                  </Text>
-                ) : (
-                  <Text size="xs">{dayjs.duration(nzb.eta, 's').format('H:mm:ss')}</Text>
-                )}
-              </td>
-              {progressBreakpoint < width ? (
-                <td style={{ display: 'flex', alignItems: 'center' }}>
-                  <Text mr="sm" style={{ whiteSpace: 'nowrap' }}>
-                    {nzb.progress.toFixed(1)}%
-                  </Text>
-                  {width > progressbarBreakpoint ? (
-                    <Progress
-                      radius="lg"
-                      color={nzb.eta > 0 ? theme.primaryColor : 'lightgrey'}
-                      value={nzb.progress}
-                      size="lg"
-                      style={{ width: '100%' }}
-                    />
+            <Popover
+              withArrow
+              withinPortal
+              radius="lg"
+              shadow="sm"
+              transitionProps={{
+                transition: 'pop',
+              }}
+            >
+              <Popover.Target>
+                <tr key={nzb.id}>
+                  <td>
+                    <Text
+                      style={{
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                      size="xs"
+                      color={nzb.state === 'paused' ? 'dimmed' : undefined}
+                    >
+                      {nzb.name}
+                    </Text>
+                  </td>
+                  {sizeBreakpoint < width ? (
+                    <td>
+                      <Text size="xs">{humanFileSize(nzb.size)}</Text>
+                    </td>
                   ) : null}
-                </td>
-              ) : null}
-            </tr>
+                  <td>
+                    {nzb.eta <= 0 ? (
+                      <Text size="xs" color="dimmed">
+                        {t('queue.paused')}
+                      </Text>
+                    ) : (
+                      <Text size="xs">{dayjs.duration(nzb.eta, 's').format('H:mm:ss')}</Text>
+                    )}
+                  </td>
+                  {progressBreakpoint < width ? (
+                    <td style={{ display: 'flex', alignItems: 'center' }}>
+                      <Text mr="sm" style={{ whiteSpace: 'nowrap' }}>
+                        {nzb.progress.toFixed(1)}%
+                      </Text>
+                      {width > progressbarBreakpoint ? (
+                        <Progress
+                          radius="lg"
+                          color={nzb.eta > 0 ? theme.primaryColor : 'lightgrey'}
+                          value={nzb.progress}
+                          size="lg"
+                          style={{ width: '100%' }}
+                        />
+                      ) : null}
+                    </td>
+                  ) : null}
+                </tr>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <List>
+                  <List.Item icon={<IconFileInfo size={16} />}>{nzb.name}</List.Item>
+                  <List.Item icon={<IconPercentage size={16} />}>
+                    {nzb.progress.toFixed(1)}%
+                  </List.Item>
+                  {nzb.state === 'downloading' ? (
+                    <List.Item icon={<IconClock size={16} />}>
+                      {parseDuration(nzb.eta, t)}
+                    </List.Item>
+                  ) : (
+                    <List.Item icon={<IconClockPause size={16} />}>{t('queue.paused')}</List.Item>
+                  )}
+                  <List.Item icon={<IconFileDownload size={16} />}>
+                    {humanFileSize(nzb.size)}
+                  </List.Item>
+                </List>
+              </Popover.Dropdown>
+            </Popover>
           ))}
         </tbody>
       </Table>

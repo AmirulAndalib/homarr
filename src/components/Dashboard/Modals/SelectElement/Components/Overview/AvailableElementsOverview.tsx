@@ -1,43 +1,46 @@
 import { Group, Space, Stack, Text, UnstyledButton } from '@mantine/core';
 import { closeModal } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
-import { IconBox, IconBoxAlignTop, IconStack } from '@tabler/icons';
+import { IconBox, IconBoxAlignTop, IconStack } from '@tabler/icons-react';
 import { motion } from 'framer-motion';
+import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 import { ReactNode } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useConfigContext } from '../../../../../../config/provider';
-import { useConfigStore } from '../../../../../../config/store';
-import { openContextModalGeneric } from '../../../../../../tools/mantineModalManagerExtensions';
-import { AppType } from '../../../../../../types/app';
+import { useConfigContext } from '~/config/provider';
+import { useConfigStore } from '~/config/store';
+import { openContextModalGeneric } from '~/tools/mantineModalManagerExtensions';
+import { generateDefaultApp } from '~/tools/shared/app';
+import { AppType } from '~/types/app';
+
 import { CategoryEditModalInnerProps } from '../../../../Wrappers/Category/CategoryEditModal';
 import { useStyles } from '../Shared/styles';
+import { getLowestWrapper } from '~/tools/config/wrapper-finder';
+import { ConfigType } from '~/types/config';
 
 interface AvailableElementTypesProps {
   modalId: string;
   onOpenIntegrations: () => void;
-  onOpenStaticElements: () => void;
 }
 
 export const AvailableElementTypes = ({
   modalId,
   onOpenIntegrations: onOpenWidgets,
-  onOpenStaticElements,
 }: AvailableElementTypesProps) => {
   const { t } = useTranslation('layout/element-selector/selector');
   const { config, name: configName } = useConfigContext();
   const { updateConfig } = useConfigStore();
-  const getLowestWrapper = () => config?.wrappers.sort((a, b) => a.position - b.position)[0];
+  const { data } = useSession();
 
   const onClickCreateCategory = async () => {
     openContextModalGeneric<CategoryEditModalInnerProps>({
       modal: 'categoryEditModal',
-      title: 'Name of new category',
+      title: t('category.newName'),
       withCloseButton: false,
       innerProps: {
         category: {
           id: uuidv4(),
-          name: 'New category',
+          name: t('category.defaultName'),
           position: 0, // doesn't matter, is being overwritten
         },
         onSuccess: async (category) => {
@@ -64,8 +67,8 @@ export const AvailableElementTypes = ({
           })).then(() => {
             closeModal(modalId);
             showNotification({
-              title: 'Category created',
-              message: `The category ${category.name} has been created`,
+              title: t('category.created.title'),
+              message: t('category.created.message', { name: category.name }),
               color: 'teal',
             });
           });
@@ -80,40 +83,13 @@ export const AvailableElementTypes = ({
       <Space h="lg" />
       <Group spacing="md" grow>
         <ElementItem
-          name="Apps"
+          name={t('apps')}
           icon={<IconBox size={40} strokeWidth={1.3} />}
           onClick={() => {
             openContextModalGeneric<{ app: AppType; allowAppNamePropagation: boolean }>({
               modal: 'editApp',
               innerProps: {
-                app: {
-                  id: uuidv4(),
-                  name: 'Your app',
-                  url: 'https://homarr.dev',
-                  appearance: {
-                    iconUrl: '/imgs/logo/logo.png',
-                  },
-                  network: {
-                    enabledStatusChecker: true,
-                    statusCodes: ['200'],
-                  },
-                  behaviour: {
-                    isOpeningNewTab: true,
-                    externalUrl: '',
-                  },
-
-                  area: {
-                    type: 'wrapper',
-                    properties: {
-                      id: getLowestWrapper()?.id ?? 'default',
-                    },
-                  },
-                  shape: {},
-                  integration: {
-                    type: null,
-                    properties: [],
-                  },
-                },
+                app: generateDefaultApp(getLowestWrapper(config as ConfigType)?.id ?? 'default'),
                 allowAppNamePropagation: true,
               },
               size: 'xl',
@@ -121,20 +97,15 @@ export const AvailableElementTypes = ({
           }}
         />
         <ElementItem
-          name="Widgets"
+          name={t('widgets')}
           icon={<IconStack size={40} strokeWidth={1.3} />}
           onClick={onOpenWidgets}
         />
         <ElementItem
-          name="Category"
+          name={t('categories')}
           icon={<IconBoxAlignTop size={40} strokeWidth={1.3} />}
           onClick={onClickCreateCategory}
         />
-        {/*<ElementItem
-          name="Static Element"
-          icon={<IconTextResize size={40} strokeWidth={1.3} />}
-          onClick={onOpenStaticElements}
-        />*/}
       </Group>
     </>
   );

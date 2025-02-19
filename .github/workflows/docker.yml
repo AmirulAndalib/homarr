@@ -6,9 +6,6 @@ name: Master CI
 on:
   push:
     branches: [master]
-    paths-ignore:
-      - '.github/**'
-      - '**.md'
     tags:
       - v*
     
@@ -19,6 +16,9 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
 
 jobs:
   # Push image to GitHub Packages.
@@ -49,7 +49,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Restore NextJS cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
@@ -60,9 +60,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - run: yarn install --immutable
+      - run: yarn install
 
-      - run: yarn build
+      - run: yarn turbo build
 
       - name: Docker meta
         id: meta
@@ -89,7 +89,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           context: .
@@ -98,3 +98,4 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          network: host

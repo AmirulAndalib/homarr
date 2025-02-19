@@ -1,23 +1,45 @@
 {
   "descriptor": {
-    "name": "IFrame",
+    "name": "iFrame",
     "description": "Incorporar qualquer conteúdo da internet. Alguns sites podem restringir o acesso.",
     "settings": {
-      "title": "Configurações do IFrame",
+      "title": "configurações do IFrame",
       "embedUrl": {
         "label": "Incorporar URL"
       },
       "allowFullScreen": {
         "label": "Permitir tela cheia"
+      },
+      "allowTransparency": {
+        "label": "Permitir transparência"
+      },
+      "allowScrolling": {
+        "label": "Permitir rolagem"
+      },
+      "allowPayment": {
+        "label": "Permitir pagamento"
+      },
+      "allowAutoPlay": {
+        "label": "Permitir reprodução automática"
+      },
+      "allowMicrophone": {
+        "label": "Permitir microfone"
+      },
+      "allowCamera": {
+        "label": "Permitir câmera"
+      },
+      "allowGeolocation": {
+        "label": "Permitir geolocalização"
       }
     }
   },
   "card": {
     "errors": {
       "noUrl": {
-        "title": "Insira uma URL",
+        "title": "URL inválido",
         "text": "Certifique-se de que você inseriu um endereço válido na configuração do seu widget"
-      }
+      },
+      "browserSupport": "Seu navegador não suporta iframes. Atualize seu navegador."
     }
   }
 }

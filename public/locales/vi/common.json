@@ -1,21 +1,34 @@
 {
   "save": "Lưu",
+  "apply": "Áp dụng",
+  "insert": "Thêm",
   "about": "Về chúng tôi",
   "cancel": "Hủy",
   "close": "Đóng",
+  "back": "Quay lại",
   "delete": "Xóa",
   "ok": "OK",
   "edit": "Sửa",
+  "next": "Kế tiếp",
+  "previous": "Trước",
+  "confirm": "Xác nhận",
+  "enabled": "Bật",
+  "duplicate": "Nhân bản",
+  "disabled": "Tắt",
+  "enableAll": "Bật toàn bộ",
+  "disableAll": "Tắt toàn bộ",
+  "setTimer": "Đặt hẹn giờ",
   "version": "Phiên bản",
   "changePosition": "Đổi vị trí",
   "remove": "Xóa",
-  "removeConfirm": "Bạn có chắc muốn xoá {{item}} ?",
+  "removeConfirm": "Bạn có chắc muốn xoá {{item}}?",
+  "createItem": "+ tạo {{item}}",
   "sections": {
     "settings": "Cài đặt",
     "dangerZone": "Khu vực nguy hiểm"
   },
   "secrets": {
-    "apiKey": "Khóa API",
+    "apiKey": "Khoá API",
     "username": "Tên người dùng",
     "password": "Mật khẩu"
   },
@@ -30,5 +43,17 @@
     "small": "nhỏ",
     "medium": "trung bình",
     "large": "lớn"
-  }
+  },
+  "seeMore": "Xem thêm...",
+  "position": {
+    "left": "Trái",
+    "center": "Giữa",
+    "right": "Phải"
+  },
+  "attributes": {
+    "width": "Chiều rộng",
+    "height": "Chiều cao"
+  },
+  "public": "Công khai",
+  "restricted": "Bị hạn chế"
 }

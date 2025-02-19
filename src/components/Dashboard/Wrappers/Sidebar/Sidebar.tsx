@@ -1,8 +1,9 @@
 import { Card } from '@mantine/core';
 import { RefObject } from 'react';
-import { useCardStyles } from '../../../layout/useCardStyles';
-import { useGridstack } from '../gridstack/use-gridstack';
+
+import { useCardStyles } from '../../../layout/Common/useCardStyles';
 import { WrapperContent } from '../WrapperContent';
+import { useGridstack } from '../gridstack/use-gridstack';
 
 interface DashboardSidebarProps extends DashboardSidebarInnerProps {
   location: 'right' | 'left';

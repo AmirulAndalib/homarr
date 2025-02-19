@@ -4,6 +4,9 @@
     "description": "Viser graferne for en ekstern Dash. instans i Homarr.",
     "settings": {
       "title": "Indstillinger for Dash. widget",
+      "dashName": {
+        "label": "Dash. Navn"
+      },
       "url": {
         "label": "Dash. URL"
       },
@@ -85,7 +88,7 @@
       "noInformation": "Kan ikke hente information fra dash. - kører du den nyeste version?",
       "protocolDowngrade": {
         "title": "Registreret protokolnedgradering",
-        "text": "Protokollen til din Dash. instans bliver nedgraderet. Dette er sikkerhedsrisiko, da HTTP er ukrypteret og angribere kunne misbruge denne forbindelse. Sørg for, at Dash. kører på HTTPS også eller nedgraderer Homarr til HTTP (anbefales ikke)."
+        "text": "Forbindelsen til din Dash.-instans bruger HTTP. Dette er en sikkerhedsrisiko, fordi HTTP er ukrypteret, og angribere kan misbruge denne forbindelse. Sørg for, at Dash. bruger HTTPS, eller nedgrader Homarr til HTTP (anbefales ikke)."
       }
     },
     "graphs": {

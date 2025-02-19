@@ -1,4 +1,4 @@
-import { createStyles, LoadingOverlay } from '@mantine/core';
+import { LoadingOverlay, createStyles } from '@mantine/core';
 import { useEffect, useRef, useState } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
@@ -15,7 +15,6 @@ const VideoFeed = ({ source, controls, autoPlay, muted }: VideoFeedProps) => {
   const [player, setPlayer] = useState<ReturnType<typeof videojs>>();
 
   const { classes, cx } = useStyles();
-
   useEffect(() => {
     // make sure Video.js player is only initialized once
     if (player) {
@@ -50,7 +49,7 @@ const VideoFeed = ({ source, controls, autoPlay, muted }: VideoFeedProps) => {
       <LoadingOverlay visible={player === undefined} />
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video className={cx('video-js', classes.video)} ref={videoRef}>
-        <source src={source} type="video/mp4" />
+        <source src={source} />
       </video>
     </>
   );
@@ -59,6 +58,7 @@ const VideoFeed = ({ source, controls, autoPlay, muted }: VideoFeedProps) => {
 const useStyles = createStyles(({ radius }) => ({
   video: {
     height: '100%',
+    width: '100%',
     borderRadius: radius.md,
     overflow: 'hidden',
   },

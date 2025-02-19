@@ -1,0 +1,14 @@
+{
+  "card": {
+    "title": "Hoppsan, ett fel har uppstått!",
+    "buttons": {
+      "details": "Detaljer",
+      "tryAgain": "Försök igen"
+    }
+  },
+  "modal": {
+    "text": "Widet kraschade oväntat. Läs igenom dokumentationen och åtgärda eventuella skrivfel.",
+    "label": "",
+    "reportButton": ""
+  }
+}

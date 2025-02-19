@@ -3,24 +3,25 @@ import {
   Center,
   Code,
   Group,
+  List,
   Pagination,
+  Popover,
   Skeleton,
   Stack,
   Table,
   Text,
   Title,
-  Tooltip,
 } from '@mantine/core';
 import { useElementSize } from '@mantine/hooks';
-import { IconAlertCircle } from '@tabler/icons';
-import { AxiosError } from 'axios';
+import { IconAlertCircle, IconClock, IconFileDownload, IconFileInfo } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import { useTranslation } from 'next-i18next';
 import { FunctionComponent, useState } from 'react';
-import { useGetUsenetHistory } from '../../hooks/widgets/dashDot/api';
-import { humanFileSize } from '../../tools/humanFileSize';
-import { parseDuration } from '../../tools/client/parseDuration';
+import { parseDuration } from '~/tools/client/parseDuration';
+import { humanFileSize } from '~/tools/humanFileSize';
+
+import { useGetUsenetHistory } from '../dashDot/api';
 
 dayjs.extend(duration);
 
@@ -65,7 +66,7 @@ export const UsenetHistoryList: FunctionComponent<UsenetHistoryListProps> = ({ a
         >
           {t('modules/usenet:history.error.message')}
           <Code mt="sm" block>
-            {(error as AxiosError)?.response?.data as string}
+            {error.message}
           </Code>
         </Alert>
       </Group>
@@ -87,37 +88,58 @@ export const UsenetHistoryList: FunctionComponent<UsenetHistoryListProps> = ({ a
           <tr>
             <th>{t('modules/usenet:history.header.name')}</th>
             <th style={{ width: 100 }}>{t('modules/usenet:history.header.size')}</th>
-            {durationBreakpoint < width ? (
+            {durationBreakpoint < width && (
               <th style={{ width: 200 }}>{t('modules/usenet:history.header.duration')}</th>
-            ) : null}
+            )}
           </tr>
         </thead>
         <tbody>
           {data.items.map((history) => (
-            <tr key={history.id}>
-              <td>
-                <Tooltip position="top" label={history.name}>
-                  <Text
-                    size="xs"
-                    style={{
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}
-                  >
-                    {history.name}
-                  </Text>
-                </Tooltip>
-              </td>
-              <td>
-                <Text size="xs">{humanFileSize(history.size)}</Text>
-              </td>
-              {durationBreakpoint < width ? (
-                <td>
-                  <Text size="xs">{parseDuration(history.time, t)}</Text>
-                </td>
-              ) : null}
-            </tr>
+            <Popover
+              withArrow
+              withinPortal
+              radius="lg"
+              shadow="sm"
+              transitionProps={{
+                transition: 'pop',
+              }}
+            >
+              <Popover.Target>
+                <tr key={history.id}>
+                  <td>
+                    <Text
+                      size="xs"
+                      style={{
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
+                      {history.name}
+                    </Text>
+                  </td>
+                  <td>
+                    <Text size="xs">{humanFileSize(history.size)}</Text>
+                  </td>
+                  {durationBreakpoint < width && (
+                    <td>
+                      <Text size="xs">{parseDuration(history.time, t)}</Text>
+                    </td>
+                  )}
+                </tr>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <List>
+                  <List.Item icon={<IconFileInfo size={16} />}>{history.name}</List.Item>
+                  <List.Item icon={<IconClock size={16} />}>
+                    {parseDuration(history.time, t)}
+                  </List.Item>
+                  <List.Item icon={<IconFileDownload size={16} />}>
+                    {humanFileSize(history.size)}
+                  </List.Item>
+                </List>
+              </Popover.Dropdown>
+            </Popover>
           ))}
         </tbody>
       </Table>

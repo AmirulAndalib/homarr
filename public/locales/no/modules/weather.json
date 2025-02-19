@@ -7,6 +7,15 @@
       "displayInFahrenheit": {
         "label": "Vis i Fahrenheit"
       },
+      "displayCityName": {
+        "label": "Vis bynavn"
+      },
+      "displayWeekly": {
+        "label": "Vis ukentlig Værmelding"
+      },
+      "forecastDays": {
+        "label": "Dager å vise"
+      },
       "location": {
         "label": "Vær plassering"
       }
@@ -29,5 +38,6 @@
       "thunderstormWithHail": "Tordenvær med hagl",
       "unknown": "Ukjent"
     }
-  }
+  },
+  "error": "En feil oppstod"
 }

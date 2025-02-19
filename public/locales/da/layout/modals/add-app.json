@@ -13,18 +13,38 @@
 		},
 		"internalAddress": {
 			"label": "Intern adresse",
-			"description": "Appens interne IP."
+			"description": "Appens interne IP.",
+			"troubleshoot": {
+				"label": "Har du problemer?",
+				"header": "Her er en liste over de mest almindelige fejl og fejlfindingen:",
+				"lines": {
+					"nothingAfterPort": "Du bør i de fleste, hvis ikke alle, tilfælde ikke indtaste nogen sti efter porten. (Selv '/admin' for pihole eller '/web' for plex)",
+					"protocolCheck": "Sørg altid for, at der står http eller https foran URL'en, og sørg for, at du bruger den rigtige.",
+					"preferIP": "Det anbefales at bruge den direkte ip på den maskine eller container, du forsøger at kommunikere med.",
+					"enablePings": "Tjek, at IP'en er korrekt ved at aktivere pings. Customize Board -> Layout -> Enable pings. En lille rød eller grøn boble vil dukke op på dine app-fliser, og hvis du holder musen over den, får du svarets kode (en grøn boble med kode 200 forventes i de fleste tilfælde).",
+					"wget": "For at sikre, at homarr kan kommunikere med de andre apps, skal du sørge for at wget/curl/ping appens IP:port.",
+					"iframe": "Når det gælder iframes, skal de altid bruge den samme protokol (http/s) som Homarr.",
+					"clearCache": "Nogle oplysninger er registreret i cachen, så en integration virker måske ikke, medmindre du rydder cachen i Homarrs generelle indstillinger."
+				},
+				"footer": "For yderligere fejlfinding, kontakt os på vores {{discord}}."
+			}
 		},
 		"externalAddress": {
 			"label": "Ekstern adresse",
-			"description": "URL-adresse, der åbnes, når du klikker på appen."
+			"description": "URL-adresse, der åbnes, når du klikker på appen.",
+			"tooltip": "Du kan bruge nogle få variabler til at oprette dynamiske adresser:<br><br><b>[homarr_base]</b>: fuld adresse uden port og sti. <i>(Eksempel: 'https://subdomain.homarr.dev'</i>)<br><b>[homarr_hostname]</b>: fuld base-url inklusive det aktuelle subdomæne. (Eksempel: ' <i>subdomain.homarr.dev')</i><br><b>[homarr_domain]</b>: domæne med subdomæne filtreret ud. (Eksempel: <i>`homarr.dev</i>')<br><b>[homarr_protocol]</b>: <i>http/https</i><br><br>Disse variabler afhænger alle af den aktuelle url."
 		}
 	},
 	"behaviour": {
 		"isOpeningNewTab": {
 			"label": "Åbn i nyt faneblad",
 			"description": "Åbn appen i en ny fane i stedet for den aktuelle fane."
-		}
+		},
+		"tooltipDescription": {
+			"label": "Applikationsbeskrivelse",
+			"description": "Den tekst, du indtaster, vises, når du holder musen over din app.\nBrug den til at give brugerne flere detaljer om din app, eller lad den stå tom, hvis du ikke vil have noget."
+		},
+		"customProtocolWarning": "Brug af en ikke-standardiseret protokol. Dette kan kræve forudinstallerede programmer og kan medføre sikkerhedsrisici. Sørg for, at din adresse er sikker og pålidelig."
 	},
 	"network": {
 		"statusChecker": {
@@ -39,7 +59,7 @@
 	"appearance": {
 		"icon": {
 			"label": "App Ikon",
-			"description": "Vælg et ikon der skal vises på dit dashboard. Vælg mellem {{suggestionsCount}} ikoner eller indtast din egen URL",
+			"description": "Begynd at skrive for at finde et ikon. Du kan også indsætte en billed-URL for at bruge et brugerdefineret ikon.",
 			"autocomplete": {
 				"title": "Ingen resultater fundet",
 				"text": "Prøv at bruge et mere specifikt søgeord. Hvis du ikke kan finde det ønskede ikon, kan du indsætte billedets URL ovenfor for at få et brugerdefineret ikon"
@@ -48,6 +68,33 @@
 				"title": "Indlæser eksterne ikoner",
 				"text": "Dette kan tage nogle sekunder"
 			}
+		},
+		"appNameFontSize": {
+			"label": "Appnavn Skriftstørrelse",
+			"description": "Indstil skriftstørrelsen, når appens navn vises på flisen."
+		},
+		"appNameStatus": {
+			"label": "App Navn Status",
+			"description": "Vælg, hvor du vil have titlen vist, hvis den overhovedet skal vises.",
+			"dropdown": {
+				"normal": "Vis kun titel på flise",
+				"hover": "Vis kun titel på tooltip hover",
+				"hidden": "Vis slet ikke"
+			}
+		},
+		"positionAppName": {
+			"label": "App Navn Position",
+			"description": "Placering af appens navn i forhold til ikonet.",
+			"dropdown": {
+				"top": "Top",
+				"right": "Højre",
+				"bottom": "Bund",
+				"left": "Venstre"
+			}
+		},
+		"lineClampAppName": {
+			"label": "App Navn Linje Klemme",
+			"description": "Definerer hvor mange linjer din titel skal passe til det maksimale. Sæt 0 for ubegrænset."
 		}
 	},
 	"integration": {
@@ -71,6 +118,12 @@
 		}
 	},
 	"validation": {
-		"popover": "Din formular indeholder ugyldige data. Derfor kan den ikke gemmes. Løs alle problemer og klik på denne knap igen for at gemme dine ændringer"
+		"popover": "Din formular indeholder ugyldige data. Derfor kan den ikke gemmes. Løs alle problemer og klik på denne knap igen for at gemme dine ændringer",
+		"name": "Navn er obligatorisk",
+		"noUrl": "Url er obligatorisk",
+		"invalidUrl": "Værdien er ikke en gyldig url",
+		"noIconUrl": "Dette felt er påkrævet",
+		"noExternalUri": "Ekstern URI er påkrævet",
+		"invalidExternalUri": "Ekstern URI er ikke en gyldig uri"
 	}
 }

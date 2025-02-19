@@ -9,15 +9,15 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import { IconAlertTriangle, IconMovie } from '@tabler/icons';
+import { IconAlertTriangle, IconMovie } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
-import { AppAvatar } from '../../components/AppAvatar';
-import { useEditModeStore } from '../../components/Dashboard/Views/useEditModeStore';
-import { useConfigContext } from '../../config/provider';
-import { useGetMediaServers } from '../../hooks/widgets/media-servers/useGetMediaServers';
+import { AppAvatar } from '~/components/AppAvatar';
+import { useConfigContext } from '~/config/provider';
+
 import { defineWidget } from '../helper';
 import { IWidget } from '../widgets';
 import { TableRow } from './TableRow';
+import { useGetMediaServers } from './useGetMediaServers';
 
 const definition = defineWidget({
   id: 'media-server',
@@ -41,7 +41,6 @@ interface MediaServerWidgetProps {
 function MediaServerTile({ widget }: MediaServerWidgetProps) {
   const { t } = useTranslation('modules/media-server');
   const { config } = useConfigContext();
-  const isEditMode = useEditModeStore((x) => x.enabled);
 
   const { data, isError, isFetching, isInitialLoading } = useGetMediaServers({
     enabled: config !== undefined,
@@ -71,7 +70,7 @@ function MediaServerTile({ widget }: MediaServerWidgetProps) {
         <Loader />
         <Stack align="center" spacing={0}>
           <Text>{t('descriptor.name')}</Text>
-          <Text color="dimmed">Homarr is loading streams...</Text>
+          <Text color="dimmed">{t('loading')}</Text>
         </Stack>
       </Stack>
     );
@@ -79,7 +78,7 @@ function MediaServerTile({ widget }: MediaServerWidgetProps) {
 
   return (
     <Stack h="100%">
-      <ScrollArea offsetScrollbars>
+      <ScrollArea offsetScrollbars h="100%">
         <Table highlightOnHover>
           <thead>
             <tr>
@@ -99,9 +98,9 @@ function MediaServerTile({ widget }: MediaServerWidgetProps) {
         </Table>
       </ScrollArea>
 
-      <Group position="right" mt="auto">
+      <Group pos="absolute" bottom="15" right="15" mt="auto">
         <Avatar.Group>
-          {data?.servers.map((server) => {
+          {data?.servers.map((server, index) => {
             const app = config?.apps.find((x) => x.id === server.appId);
 
             if (!app) {
@@ -110,6 +109,7 @@ function MediaServerTile({ widget }: MediaServerWidgetProps) {
 
             return (
               <AppAvatar
+                key={index}
                 iconUrl={app.appearance.iconUrl}
                 // If success, the color is undefined, otherwise it's red but if isFetching is true, it's yellow
                 color={server.success ? (isFetching ? 'yellow' : undefined) : 'red'}

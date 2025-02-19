@@ -1,7 +1,7 @@
 {
 	"tabs": {
 		"general": "General",
-		"behaviour": "Behaviour",
+		"behaviour": "",
 		"network": "Netwerk",
 		"appearance": "Appearance",
 		"integration": "Integrashun"
@@ -24,7 +24,12 @@
 		"isOpeningNewTab": {
 			"label": "Open in new tab",
 			"description": "Open Teh App In New Tab Instead Ov Teh Current Wan."
-		}
+		},
+		"tooltipDescription": {
+			"label": "",
+			"description": ""
+		},
+		"customProtocolWarning": ""
 	},
 	"network": {
 		"statusChecker": {
@@ -48,6 +53,33 @@
 				"title": "",
 				"text": ""
 			}
+		},
+		"appNameFontSize": {
+			"label": "",
+			"description": ""
+		},
+		"appNameStatus": {
+			"label": "",
+			"description": "",
+			"dropdown": {
+				"normal": "",
+				"hover": "",
+				"hidden": ""
+			}
+		},
+		"positionAppName": {
+			"label": "",
+			"description": "",
+			"dropdown": {
+				"top": "",
+				"right": "",
+				"bottom": "",
+				"left": ""
+			}
+		},
+		"lineClampAppName": {
+			"label": "",
+			"description": ""
 		}
 	},
 	"integration": {
@@ -71,6 +103,12 @@
 		}
 	},
 	"validation": {
-		"popover": "Ur Form Contains Invalid Data. Hence, It Cant Be Savd. Plz Resolve All Issuez An Click Dis Butn Again 2 Save Ur Changez"
+		"popover": "Ur Form Contains Invalid Data. Hence, It Cant Be Savd. Plz Resolve All Issuez An Click Dis Butn Again 2 Save Ur Changez",
+		"name": "",
+		"noUrl": "",
+		"invalidUrl": "",
+		"noIconUrl": "",
+		"noExternalUri": "",
+		"invalidExternalUri": ""
 	}
 }

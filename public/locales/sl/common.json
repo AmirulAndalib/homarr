@@ -1,21 +1,34 @@
 {
   "save": "Shrani",
+  "apply": "Uporabi",
+  "insert": "Vstavite",
   "about": "O programu",
   "cancel": "Prekliči",
   "close": "Zapri",
+  "back": "Nazaj",
   "delete": "Izbriši",
   "ok": "V redu",
   "edit": "Uredi",
+  "next": "Naslednji",
+  "previous": "Prejšnji",
+  "confirm": "Potrdi",
+  "enabled": "Omogočeno",
+  "duplicate": "",
+  "disabled": "Invalidi",
+  "enableAll": "Omogoči vse",
+  "disableAll": "Onemogočite vse",
+  "setTimer": "",
   "version": "Različica",
   "changePosition": "Spremeni položaj",
   "remove": "Odstrani",
-  "removeConfirm": "Ali ste prepričani, da želite odstraniti {{item}} ?",
+  "removeConfirm": "Ali ste prepričani, da želite odstraniti {{item}}?",
+  "createItem": "+ ustvarite {{item}}",
   "sections": {
     "settings": "Nastavitve",
     "dangerZone": "Nevarno območje"
   },
   "secrets": {
-    "apiKey": "Api ključ",
+    "apiKey": "API ključ",
     "username": "Uporabniško ime",
     "password": "Geslo"
   },
@@ -30,5 +43,17 @@
     "small": "majhen",
     "medium": "srednja",
     "large": "velika"
-  }
+  },
+  "seeMore": "Oglejte si več...",
+  "position": {
+    "left": "Leva stran",
+    "center": "Center",
+    "right": "Desno"
+  },
+  "attributes": {
+    "width": "Širina",
+    "height": "Višina"
+  },
+  "public": "Javna stran",
+  "restricted": "Omejeno"
 }

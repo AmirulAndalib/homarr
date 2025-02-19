@@ -5,15 +5,26 @@
     "settings": {
       "title": "",
       "rssFeedUrl": {
+        "label": "",
+        "description": ""
+      },
+      "refreshInterval": {
+        "label": ""
+      },
+      "dangerousAllowSanitizedItemContent": {
+        "label": "",
+        "info": ""
+      },
+      "textLinesClamp": {
         "label": ""
       }
-    }
-  },
-  "card": {
-    "errors": {
-      "general": {
-        "title": "",
-        "text": ""
+    },
+    "card": {
+      "errors": {
+        "general": {
+          "title": "",
+          "text": ""
+        }
       }
     }
   }

@@ -1,9 +1,9 @@
 {
   "descriptor": {
-    "name": "Video streams",
-    "description": "Voeg een video stream, video van een camera of een website in",
+    "name": "Video stream",
+    "description": "Een videostream of video van een camera of een website insluiten",
     "settings": {
-      "title": "Instellingen voor videostream-widget",
+      "title": "Instellingen voor video stream widget",
       "FeedUrl": {
         "label": "Feed URL"
       },
@@ -14,7 +14,7 @@
         "label": "Gedempte audio"
       },
       "controls": {
-        "label": "Bedieningselementen videospeler"
+        "label": "Bediening van de videospeler"
       }
     }
   },

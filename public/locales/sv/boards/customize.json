@@ -1,0 +1,29 @@
+{
+    "metaTitle": "Anpassa {{name}} Board",
+    "pageTitle": "Anpassning för {{name}} Board",
+    "backToBoard": "Tillbaka till tavla",
+    "settings": {
+        "appearance": {
+            "primaryColor": "Primärfärg",
+            "secondaryColor": "Sekundärfärg"
+        }
+    },
+    "save": {
+        "button": "Spara ändringar",
+        "note": "Var försiktig, du har osparade ändringar!"
+    },
+    "notifications": {
+        "pending": {
+            "title": "Sparar anpassning",
+            "message": "Vänligen vänta medan vi sparar din anpassning"
+        },
+        "success": {
+            "title": "Anpassning sparad",
+            "message": "Din anpassning har sparats"
+        },
+        "error": {
+            "title": "Fel",
+            "message": "Det gick inte att spara ändringar"
+        }
+    }
+}

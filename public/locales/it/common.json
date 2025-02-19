@@ -1,15 +1,28 @@
 {
   "save": "Salva",
+  "apply": "Applica",
+  "insert": "Inserisci",
   "about": "Info",
   "cancel": "Annulla",
   "close": "Chiudi",
+  "back": "Indietro",
   "delete": "Elimina",
   "ok": "OK",
   "edit": "Modifica",
+  "next": "Successivo",
+  "previous": "Precedente",
+  "confirm": "Conferma",
+  "enabled": "Abilitato",
+  "duplicate": "Duplica",
+  "disabled": "Disattivato",
+  "enableAll": "Abilita tutto",
+  "disableAll": "Disattiva tutto",
+  "setTimer": "Imposta timer",
   "version": "Versione",
   "changePosition": "Cambia posizione",
   "remove": "Rimuovi",
   "removeConfirm": "Siete sicuri di voler rimuovere {{item}}?",
+  "createItem": "+ crea {{item}}",
   "sections": {
     "settings": "Impostazioni",
     "dangerZone": "Danger zone"
@@ -30,5 +43,17 @@
     "small": "piccolo",
     "medium": "medio",
     "large": "grande"
-  }
+  },
+  "seeMore": "Vedi di più...",
+  "position": {
+    "left": "Sinistra",
+    "center": "Centra",
+    "right": "Destra"
+  },
+  "attributes": {
+    "width": "Larghezza",
+    "height": "Altezza"
+  },
+  "public": "Pubblico",
+  "restricted": "Limitato"
 }

@@ -7,6 +7,15 @@
       "displayInFahrenheit": {
         "label": "Mostra in Fahrenheit"
       },
+      "displayCityName": {
+        "label": "Visualizza nome città"
+      },
+      "displayWeekly": {
+        "label": "Visualizza Previsioni Settimanali"
+      },
+      "forecastDays": {
+        "label": "Giorni Da Mostrare"
+      },
       "location": {
         "label": "Località meteo"
       }
@@ -29,5 +38,6 @@
       "thunderstormWithHail": "Temporale con grandine",
       "unknown": "Sconosciuto"
     }
-  }
+  },
+  "error": "Si è verificato un errore"
 }

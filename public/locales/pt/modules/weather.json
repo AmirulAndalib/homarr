@@ -7,6 +7,15 @@
       "displayInFahrenheit": {
         "label": "Mostrar em Fahrenheit"
       },
+      "displayCityName": {
+        "label": "Exibir nome da cidade"
+      },
+      "displayWeekly": {
+        "label": "Exibir previsão semanal"
+      },
+      "forecastDays": {
+        "label": "Dias a exibir"
+      },
       "location": {
         "label": "Localização do tempo"
       }
@@ -17,17 +26,18 @@
       "clear": "Limpar",
       "mainlyClear": "Principalmente claro",
       "fog": "Névoa",
-      "drizzle": "Drizzle",
+      "drizzle": "Chuvisco",
       "freezingDrizzle": "Chuvisco de congelação",
       "rain": "Chuva",
       "freezingRain": "Chuva gelada",
       "snowFall": "Queda de neve",
       "snowGrains": "Grãos de neve",
       "rainShowers": "Duches de chuva",
-      "snowShowers": "Duches de neve",
-      "thunderstorm": "Tempestade de trovoada",
-      "thunderstormWithHail": "Tempestade de trovoada com granizo",
+      "snowShowers": "Aguaceiros de neve",
+      "thunderstorm": "Tempestade",
+      "thunderstormWithHail": "Tempestade com granizo",
       "unknown": "Desconhecido"
     }
-  }
+  },
+  "error": "Ocorreu um erro"
 }

@@ -1,19 +1,39 @@
 {
   "descriptor": {
     "name": "RSS mini aplikácia",
-    "description": "Stiahne položky z informačného kanála RSS a zobrazí ich. Bežne sa používa pre online správy",
+    "description": "Widget rss umožňuje zobrazovať kanály RSS na ovládacom paneli.",
     "settings": {
       "title": "Nastavenia mini aplikácie RSS",
       "rssFeedUrl": {
-        "label": "URL adresa RSS"
+        "label": "Adresy URL kanálov RSS",
+        "description": "Adresy URL kanálov RSS, ktoré chcete zobraziť."
+      },
+      "refreshInterval": {
+        "label": "Interval obnovovania (v minútach)"
+      },
+      "dangerousAllowSanitizedItemContent": {
+        "label": "Povolenie formátovania HTML (Nebezpečné)",
+        "info": "Povolenie formátovania HTML zvonku by mohlo byť nebezpečné.<br/>Uistite sa, že zdroj pochádza z dôveryhodného zdroja."
+      },
+      "textLinesClamp": {
+        "label": "Svorka textových riadkov"
+      },
+      "sortByPublishDateAscending": {
+        "label": "Zoradiť podľa dátumu vydania (vzostupne)"
+      },
+      "sortPostsWithoutPublishDateToTheTop": {
+        "label": "Umiestnite príspevky bez dátumu uverejnenia na začiatok"
+      },
+      "maximumAmountOfPosts": {
+        "label": "Maximálny počet príspevkov"
       }
-    }
-  },
-  "card": {
-    "errors": {
-      "general": {
-        "title": "Nie je možné načítať kanál RSS",
-        "text": "Vyskytol sa problém s kontaktovaním informačného kanála RSS. Uistite sa, že ste &apos; informačný kanál správne nakonfigurovali a používate platnú adresu URL RSS, ktorá zodpovedá oficiálnej štandardnej špecifikácii. Po aktualizácii informačného kanála možno budete musieť uložiť informačný panel a obnoviť stránku."
+    },
+    "card": {
+      "errors": {
+        "general": {
+          "title": "Nie je možné načítať kanál RSS",
+          "text": "Vyskytol sa problém s dosiahnutím kanála RSS. Uistite sa, že ste správne nakonfigurovali kanál RSS pomocou platnej adresy URL. Adresy URL by mali zodpovedať oficiálnej špecifikácii. Po aktualizácii kanála bude možno potrebné obnoviť ovládací panel."
+        }
       }
     }
   }

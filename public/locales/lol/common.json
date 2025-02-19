@@ -3,19 +3,28 @@
   "about": "'bout",
   "cancel": "Cancel",
   "close": "Cloes",
+  "back": "",
   "delete": "Deleet",
   "ok": "K",
   "edit": "Edit",
+  "next": "",
+  "previous": "",
+  "confirm": "",
+  "enabled": "",
+  "disabled": "",
+  "enableAll": "",
+  "disableAll": "",
   "version": "Vershun",
   "changePosition": "Change Posishun",
   "remove": "Remoev",
-  "removeConfirm": "R U Sure Dat U Wants 2 Remoov {{item}} ?",
+  "removeConfirm": "",
+  "createItem": "",
   "sections": {
     "settings": "Settingz",
     "dangerZone": "Dangr zoen"
   },
   "secrets": {
-    "apiKey": "Api key",
+    "apiKey": "",
     "username": "Usernaem",
     "password": "Password"
   },
@@ -30,5 +39,6 @@
     "small": "small",
     "medium": "medium",
     "large": "large"
-  }
+  },
+  "seeMore": ""
 }

@@ -9,23 +9,28 @@ import {
   IconBrush,
   IconClick,
   IconPlug,
-} from '@tabler/icons';
+} from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
+import { removeTrailingSlash } from 'next/dist/shared/lib/router/utils/remove-trailing-slash';
 import { useState } from 'react';
-import { useConfigContext } from '../../../../config/provider';
-import { useConfigStore } from '../../../../config/store';
-import { AppType } from '../../../../types/app';
+import { useConfigContext } from '~/config/provider';
+import { useConfigStore } from '~/config/store';
+import { AppType } from '~/types/app';
+
+import { DebouncedImage } from '../../../IconSelector/DebouncedImage';
 import { useEditModeStore } from '../../Views/useEditModeStore';
 import { AppearanceTab } from './Tabs/AppereanceTab/AppereanceTab';
 import { BehaviourTab } from './Tabs/BehaviourTab/BehaviourTab';
 import { GeneralTab } from './Tabs/GeneralTab/GeneralTab';
 import { IntegrationTab } from './Tabs/IntegrationTab/IntegrationTab';
 import { NetworkTab } from './Tabs/NetworkTab/NetworkTab';
-import { DebouncedAppIcon } from './Tabs/Shared/DebouncedAppIcon';
 import { EditAppModalTab } from './Tabs/type';
 
 const appUrlRegex =
-  '(https?://(?:www.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9].[^\\s]{2,}|www.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9].[^\\s]{2,}|https?://(?:www.|(?!www))[a-zA-Z0-9]+.[^\\s]{2,}|www.[a-zA-Z0-9]+.[^\\s]{2,})';
+  '(https?://(?:www.|(?!www))\\[?[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\]?.[^\\s]{2,}|www.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9].[^\\s]{2,}|https?://(?:www.|(?!www))\\[?[a-zA-Z0-9]+\\]?.[^\\s]{2,}|www.[a-zA-Z0-9]+.[^\\s]{2,})';
+
+const appUrlWithAnyProtocolRegex =
+  '([A-z]+://(?:www.|(?!www))\\[?[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\]?.[^\\s]{2,}|www.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9].[^\\s]{2,}|[A-z]+://(?:www.|(?!www))\\[?[a-zA-Z0-9]+\\]?.[^\\s]{2,}|www.[a-zA-Z0-9]+.[^\\s]{2,})';
 
 export const EditAppModal = ({
   context,
@@ -43,14 +48,14 @@ export const EditAppModal = ({
   const form = useForm<AppType>({
     initialValues: innerProps.app,
     validate: {
-      name: (name) => (!name ? 'Name is required' : null),
+      name: (name) => (!name ? t('validation.name') : null),
       url: (url) => {
         if (!url) {
-          return 'Url is required';
+          return t('validation.noUrl');
         }
 
         if (!url.match(appUrlRegex)) {
-          return 'Value is not a valid url';
+          return t('validation.invalidUrl');
         }
 
         return null;
@@ -58,7 +63,7 @@ export const EditAppModal = ({
       appearance: {
         iconUrl: (url: string) => {
           if (url.length < 1) {
-            return 'This field is required';
+            return t('validation.noIconUrl');
           }
 
           return null;
@@ -67,11 +72,15 @@ export const EditAppModal = ({
       behaviour: {
         externalUrl: (url: string) => {
           if (url === undefined || url.length < 1) {
-            return null;
+            return t('validation.noExternalUri');
           }
 
-          if (!url.match(appUrlRegex)) {
-            return 'Uri override is not a valid uri';
+          if (
+            !url.match(appUrlWithAnyProtocolRegex) &&
+            !url.startsWith('[homarr_base]') &&
+            !url.startsWith('[homarr_protocol]://')
+          ) {
+            return t('validation.invalidExternalUri');
           }
 
           return null;
@@ -86,7 +95,9 @@ export const EditAppModal = ({
       return;
     }
 
-    updateConfig(
+    values.url = removeTrailingSlash(values.url);
+
+    void updateConfig(
       configName,
       (previousConfig) => ({
         ...previousConfig,
@@ -103,6 +114,7 @@ export const EditAppModal = ({
 
     // also close the parent modal
     context.closeAll();
+    umami.track('Add app', { name: values.name });
   };
 
   const [activeTab, setActiveTab] = useState<EditAppModalTab>('general');
@@ -138,7 +150,7 @@ export const EditAppModal = ({
           </Alert>
         ))}
       <Stack spacing={0} align="center" my="lg">
-        <DebouncedAppIcon form={form} width={120} height={120} />
+        <DebouncedImage src={form.values.appearance.iconUrl} width={120} height={120} />
 
         <Text align="center" weight="bold" size="lg" mt="md">
           {form.values.name ?? 'New App'}
@@ -201,13 +213,13 @@ export const EditAppModal = ({
             <NetworkTab form={form} />
             <AppearanceTab
               form={form}
-              disallowAppNameProgagation={() => setAllowAppNamePropagation(false)}
+              disallowAppNamePropagation={() => setAllowAppNamePropagation(false)}
               allowAppNamePropagation={allowAppNamePropagation}
             />
             <IntegrationTab form={form} />
           </Tabs>
 
-          <Group position="right" mt="md">
+          <Group noWrap position="right" mt="md">
             <Button onClick={closeModal} px={50} variant="light" color="gray">
               {t('common:cancel')}
             </Button>

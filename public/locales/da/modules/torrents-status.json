@@ -10,30 +10,79 @@
       "displayCompletedTorrents": {
         "label": "Vis fuldførte torrents"
       },
+      "displayActiveTorrents": {
+        "label": "Vis aktive torrents"
+      },
+      "speedLimitOfActiveTorrents": {
+        "label": "Uploadhastighed for at betragte en torrent som aktiv (kB/s)"
+      },
       "displayStaleTorrents": {
         "label": "Vis torrents uden aktivitet"
+      },
+      "labelFilterIsWhitelist": {
+        "label": "Etiketlisten er en whitelist (i stedet for en blackliste)"
+      },
+      "labelFilter": {
+        "label": "Etiket liste",
+        "description": "Når \"er whitelist\" er markeret, fungerer dette som en whitelist. Hvis det ikke er markeret, er det en blackliste. Gør ikke noget, hvis den er tom"
+      },
+      "displayRatioWithFilter": {
+        "label": "Vis filtrerede torrents liste ratio",
+        "info": "Hvis deaktiveret, vil kun den globale ratio blive vist. Den globale ratio vil stadig bruge etiketter hvis sat"
+      },
+      "columnOrdering": {
+        "label": "Aktiver reorganisering af kolonnerne"
+      },
+      "rowSorting": {
+        "label": "Aktiver sortering af rækker"
+      },
+      "columns": {
+        "label": "Vælg kolonner, der skal vises",
+        "data": {
+          "date": "Dato tilføjet",
+          "down": "Down",
+          "up": "Up",
+          "eta": "ETA",
+          "progress": "Fremskridt"
+        }
+      },
+      "nameColumnSize": {
+        "label": "Skift størrelsen på navnekolonnen"
       }
     }
   },
   "card": {
     "footer": {
       "error": "Fejl",
-      "lastUpdated": "Sidst opdateret {{time}} siden"
+      "lastUpdated": "Sidst opdateret {{time}} siden",
+      "ratioGlobal": "Global ratio",
+      "ratioWithFilter": "Ratio med filter"
     },
     "table": {
       "header": {
+        "isCompleted": "Downloader",
         "name": "Navn",
+        "dateAdded": "Tilføjet den",
         "size": "Størrelse",
         "download": "Down",
         "upload": "Up",
         "estimatedTimeOfArrival": "ETA",
-        "progress": "Fremskridt"
+        "progress": "Fremskridt",
+        "totalUploaded": "Samlet upload",
+        "totalDownloaded": "Samlet download",
+        "ratio": "Delingsforhold",
+        "seeds": "Seeds (forbundet)",
+        "peers": "Peers (forbundet)",
+        "label": "Etiket",
+        "state": "Tilstand",
+        "stateMessage": "Tilstandsbesked"
       },
       "item": {
         "text": "Administreret af {{appName}}, {{ratio}} ratio"
       },
       "body": {
-        "nothingFound": "Ingen torrents fundet"
+        "nothingFound": "Ingen torrents fundet",
+        "filterHidingItems": "{{count}} poster er skjult af dine filtre"
       }
     },
     "lineChart": {
@@ -51,11 +100,8 @@
       },
       "generic": {
         "title": "Der opstod en uventet fejl",
-        "text": "Homarr kunne ikke kommunikere med dine Torrent-klienter. Kontroller venligst din konfiguration"
+        "text": "Kan ikke kommunikere med dine Torrent-klienter. Tjek venligst din konfiguration"
       }
-    },
-    "loading": {
-      "title": "Indlæser..."
     },
     "popover": {
       "introductionPrefix": "Administreret af",

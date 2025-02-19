@@ -4,14 +4,29 @@
     "description": "מציג לוח שנה עם עדכונים מאינטגרציות נתמכות.",
     "settings": {
       "title": "הגדרות עבור ווידג'ט יומן",
-      "useSonarrv4": {
-        "label": "השתמש בAPI גרסא 4 של סונאר (Sonarr)"
-      },
-      "sundayStart": {
-        "label": "התחל את השבוע ביום ראשון"
-      },
       "radarrReleaseType": {
-        "label": "סוג שחרור של Radarr"
+        "label": "סוג שחרור של Radarr",
+        "data": {
+          "inCinemas": "בבתי קולנוע",
+          "physicalRelease": "פיזי",
+          "digitalRelease": "דיגיטלי"
+        }
+      },
+      "hideWeekDays": {
+        "label": "הסתר ימי שבוע"
+      },
+      "showUnmonitored": {
+        "label": "הצג פריטים ללא פיקוח"
+      },
+      "fontSize": {
+        "label": "גודל גופן",
+        "data": {
+          "xs": "קטן במיוחד",
+          "sm": "קטן",
+          "md": "בינוני",
+          "lg": "גדול",
+          "xl": "גדול מאוד"
+        }
       }
     }
   }

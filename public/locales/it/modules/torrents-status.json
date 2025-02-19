@@ -10,30 +10,79 @@
       "displayCompletedTorrents": {
         "label": "Mostra torrent completati"
       },
+      "displayActiveTorrents": {
+        "label": "Visualizza i torrent attivi"
+      },
+      "speedLimitOfActiveTorrents": {
+        "label": "Velocità di upload per considerare un torrent come attivo (kB/s)"
+      },
       "displayStaleTorrents": {
         "label": "Mostra torrent in stallo"
+      },
+      "labelFilterIsWhitelist": {
+        "label": "La label list è una whitelist (anzichè blacklist)"
+      },
+      "labelFilter": {
+        "label": "Label list",
+        "description": "Quando 'è whitelist' è selezionato, agirà come una whitelist. Se non selezionato, è una blacklist. Non farà nulla quando vuoto"
+      },
+      "displayRatioWithFilter": {
+        "label": "Visualizza il ratio dell'elenco dei torrent filtrati",
+        "info": "Se disabilitato, verrà visualizzato solo il ratio globale. Il ratio globale utilizzerà comunque i label, se impostati"
+      },
+      "columnOrdering": {
+        "label": "Abilita riordinamento colonne"
+      },
+      "rowSorting": {
+        "label": "Abilita ordinamento righe"
+      },
+      "columns": {
+        "label": "Seleziona colonne da visualizzare",
+        "data": {
+          "date": "Aggiunto in data",
+          "down": "Down",
+          "up": "Up",
+          "eta": "ETA",
+          "progress": "Avanzamento"
+        }
+      },
+      "nameColumnSize": {
+        "label": "Cambia nome dimensione colonna"
       }
     }
   },
   "card": {
     "footer": {
       "error": "Errore",
-      "lastUpdated": "Ultimo aggiornamento {{time}} fa"
+      "lastUpdated": "Ultimo aggiornamento {{time}} fa",
+      "ratioGlobal": "Ratio globale",
+      "ratioWithFilter": "Ratio con filtro"
     },
     "table": {
       "header": {
+        "isCompleted": "Download in corso",
         "name": "Nome",
+        "dateAdded": "Aggiunto il",
         "size": "Dimensione",
         "download": "Down",
         "upload": "Up",
         "estimatedTimeOfArrival": "ETA",
-        "progress": "Avanzamento"
+        "progress": "Avanzamento",
+        "totalUploaded": "Upload Totale",
+        "totalDownloaded": "Download totale",
+        "ratio": "Ratio",
+        "seeds": "Seeds (connessi)",
+        "peers": "Peers (Connessi)",
+        "label": "Etichetta",
+        "state": "Stato",
+        "stateMessage": "Messaggio di stato"
       },
       "item": {
         "text": "Gestito da {{appName}}, {{ratio}} ratio"
       },
       "body": {
-        "nothingFound": "Nessun torrent trovato"
+        "nothingFound": "Nessun torrent trovato",
+        "filterHidingItems": "{{count}} le voci sono nascoste dai tuoi filtri"
       }
     },
     "lineChart": {
@@ -50,12 +99,9 @@
         "text": "Aggiungi un client Torrent supportato per visualizzare i download attuali"
       },
       "generic": {
-        "title": "Si è verificato un errore inaspettato",
-        "text": "Homarr non è riuscito a comunicare con i client Torrent. Controlla la tua configurazione"
+        "title": "Si è verificato un errore imprevisto",
+        "text": "Impossibile comunicare con i client Torrent. Controllare la configurazione"
       }
-    },
-    "loading": {
-      "title": "Caricamento in corso..."
     },
     "popover": {
       "introductionPrefix": "Gestito da",

@@ -10,30 +10,79 @@
       "displayCompletedTorrents": {
         "label": "Cacher les torrents terminés"
       },
+      "displayActiveTorrents": {
+        "label": "Afficher les torrents actifs"
+      },
+      "speedLimitOfActiveTorrents": {
+        "label": "Vitesse d'envoi pour considérer un torrent comme actif (Ko/s)"
+      },
       "displayStaleTorrents": {
-        "label": "Afficher les torrents périmés"
+        "label": "Afficher les torrents obsolètes"
+      },
+      "labelFilterIsWhitelist": {
+        "label": "La liste des libellés est une liste blanche (au lieu d'une liste noire)"
+      },
+      "labelFilter": {
+        "label": "Liste des libellés",
+        "description": "Si la case \"La liste des libellés est une liste blanche\" est cochée, elle sera appliquée comme une liste blanche. Si la case n'est pas cochée, elle s'appliquera comme une liste noire. Rien ne se passera si elle est vide"
+      },
+      "displayRatioWithFilter": {
+        "label": "Afficher le ratio de la liste des torrents filtrés",
+        "info": "Si désactivé, seul le ratio global sera affiché. Le ratio global utilisera toujours les labels si définis"
+      },
+      "columnOrdering": {
+        "label": "Permettre la réorganisation des colonnes"
+      },
+      "rowSorting": {
+        "label": "Permettre l'organisation des lignes"
+      },
+      "columns": {
+        "label": "Sélectionner les colonnes à afficher",
+        "data": {
+          "date": "Date d’ajout",
+          "down": "Descendant",
+          "up": "Montant",
+          "eta": "ETA",
+          "progress": "Progrès"
+        }
+      },
+      "nameColumnSize": {
+        "label": "Modifier la taille de la colonne des noms"
       }
     }
   },
   "card": {
     "footer": {
       "error": "Erreur",
-      "lastUpdated": "Dernière mise à jour : {{time}}"
+      "lastUpdated": "Dernière mise à jour : {{time}}",
+      "ratioGlobal": "Ratio global",
+      "ratioWithFilter": "Ratio avec filtre"
     },
     "table": {
       "header": {
+        "isCompleted": "Téléchargement en cours",
         "name": "Nom",
+        "dateAdded": "Ajouté le",
         "size": "Taille",
         "download": "Descendant",
         "upload": "Montant",
         "estimatedTimeOfArrival": "ETA",
-        "progress": "Progrès"
+        "progress": "Progrès",
+        "totalUploaded": "Total envoyé",
+        "totalDownloaded": "Total reçu",
+        "ratio": "Ratio",
+        "seeds": "Seeds (connectés)",
+        "peers": "Peers (connectés)",
+        "label": "Étiquette",
+        "state": "État",
+        "stateMessage": "Message d'état"
       },
       "item": {
         "text": "Géré par {{appName}}, {{ratio}} ratio"
       },
       "body": {
-        "nothingFound": "Aucun torrent trouvé"
+        "nothingFound": "Aucun torrent trouvé",
+        "filterHidingItems": "{{count}} entrées sont masquées par vos filtres"
       }
     },
     "lineChart": {
@@ -46,16 +95,13 @@
     },
     "errors": {
       "noDownloadClients": {
-        "title": "Aucun client Torrent supporté n'a été trouvé !",
+        "title": "Aucun client Torrent pris en charge n'a été trouvé !",
         "text": "Ajouter un client Torrent pris en charge pour voir vos téléchargements en cours"
       },
       "generic": {
         "title": "Une erreur inattendue s'est produite",
-        "text": "Homarr n'a pas pu communiquer avec vos clients Torrent. Veuillez vérifier votre configuration"
+        "text": "Impossible de communiquer avec vos clients Torrent. Veuillez vérifier votre configuration"
       }
-    },
-    "loading": {
-      "title": "Chargement..."
     },
     "popover": {
       "introductionPrefix": "Géré par",

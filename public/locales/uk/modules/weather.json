@@ -7,6 +7,15 @@
       "displayInFahrenheit": {
         "label": "Використовувати Фаренгейт"
       },
+      "displayCityName": {
+        "label": "Показувати назву міста"
+      },
+      "displayWeekly": {
+        "label": "Показати тижневий прогноз"
+      },
+      "forecastDays": {
+        "label": "Дні для відображення"
+      },
       "location": {
         "label": "Погодна локація"
       }
@@ -29,5 +38,6 @@
       "thunderstormWithHail": "Гроза з градом",
       "unknown": "Невідомо"
     }
-  }
+  },
+  "error": "Виникла помилка"
 }

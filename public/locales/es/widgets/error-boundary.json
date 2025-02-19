@@ -1,0 +1,14 @@
+{
+  "card": {
+    "title": "Ups, ¡hubo un error!",
+    "buttons": {
+      "details": "Detalles",
+      "tryAgain": "Inténtalo de nuevo"
+    }
+  },
+  "modal": {
+    "text": "",
+    "label": "",
+    "reportButton": ""
+  }
+}

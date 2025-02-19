@@ -12,6 +12,13 @@
       },
       "displayStaleTorrents": {
         "label": "Display Stale Torrents"
+      },
+      "labelFilterIsWhitelist": {
+        "label": ""
+      },
+      "labelFilter": {
+        "label": "",
+        "description": ""
       }
     }
   },
@@ -33,7 +40,8 @@
         "text": ""
       },
       "body": {
-        "nothingFound": "No torrents findz"
+        "nothingFound": "No torrents findz",
+        "filterHidingItems": ""
       }
     },
     "lineChart": {
@@ -50,12 +58,13 @@
         "text": "Add Supportd Torrent Client 2 View Ur Current Downloadz"
       },
       "generic": {
-        "title": "An Unexpectd Error Occurd",
-        "text": "Homarr Wuz Unable 2 Speek Wif Ur Torrent Clients. Plz Check Ur Configurashun"
+        "title": "",
+        "text": ""
       }
     },
     "loading": {
-      "title": "Loadin..."
+      "title": "",
+      "description": ""
     },
     "popover": {
       "introductionPrefix": "",

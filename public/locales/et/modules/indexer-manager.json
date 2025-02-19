@@ -1,0 +1,22 @@
+{
+    "descriptor": {
+        "name": "",
+        "description": "",
+        "settings": {
+            "title": "",
+            "openIndexerSiteInNewTab": {
+                "label": ""
+            }
+        }
+    },
+    "indexersStatus": {
+        "title": "",
+        "testAllButton": ""
+    },
+    "errors": {
+        "general": {
+            "title": "",
+            "text": ""
+        }
+    }
+}

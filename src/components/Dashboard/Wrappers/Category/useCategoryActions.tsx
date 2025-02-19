@@ -1,10 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useConfigStore } from '../../../../config/store';
-import { openContextModalGeneric } from '../../../../tools/mantineModalManagerExtensions';
-import { AppType } from '../../../../types/app';
-import { CategoryType } from '../../../../types/category';
-import { WrapperType } from '../../../../types/wrapper';
-import { IWidget } from '../../../../widgets/widgets';
+import { useConfigStore } from '~/config/store';
+import { openContextModalGeneric } from '~/tools/mantineModalManagerExtensions';
+import { AppType } from '~/types/app';
+import { CategoryType } from '~/types/category';
+import { WrapperType } from '~/types/wrapper';
+import { IWidget } from '~/widgets/widgets';
+
 import { CategoryEditModalInnerProps } from './CategoryEditModal';
 
 export const useCategoryActions = (configName: string | undefined, category: CategoryType) => {
@@ -31,7 +32,7 @@ export const useCategoryActions = (configName: string | undefined, category: Cat
           };
 
           // Adding category and wrapper and moving other items down
-          updateConfig(
+          await updateConfig(
             configName,
             (previous) => {
               const aboveWrappers = previous.wrappers.filter((x) => x.position <= abovePosition);
@@ -86,7 +87,7 @@ export const useCategoryActions = (configName: string | undefined, category: Cat
           };
 
           // Adding category and wrapper and moving other items down
-          updateConfig(
+          await updateConfig(
             configName,
             (previous) => {
               const aboveWrappers = previous.wrappers.filter((x) => x.position < belowPosition);
@@ -184,10 +185,20 @@ export const useCategoryActions = (configName: string | undefined, category: Cat
     updateConfig(
       configName,
       (previous) => {
-        const currentItem = previous.categories.find((x) => x.id === category.id);
+        const currentItem = previous.categories.find(
+          (previousCategory) => previousCategory.id === category.id
+        );
         if (!currentItem) return previous;
+
+        const currentWrapper = previous.wrappers.find(
+          (previousWrapper) => previousWrapper.position === currentItem?.position
+        );
+        if (!currentWrapper) return previous;
+
         // Find the main wrapper
-        const mainWrapper = previous.wrappers.find((x) => x.position === 0);
+        const mainWrapper = previous.wrappers.find(
+          (previousWrapper) => previousWrapper.position === 0
+        );
         const mainWrapperId = mainWrapper?.id ?? 'default';
 
         const isAppAffectedFilter = (app: AppType): boolean => {
@@ -195,7 +206,7 @@ export const useCategoryActions = (configName: string | undefined, category: Cat
             return false;
           }
 
-          if (app.area.type !== 'category') {
+          if (app.area.type === 'sidebar') {
             return false;
           }
 
@@ -203,7 +214,10 @@ export const useCategoryActions = (configName: string | undefined, category: Cat
             return false;
           }
 
-          return app.area.properties.id === currentItem.id;
+          return (
+            app.area.properties.id === currentItem.id ||
+            app.area.properties.id === currentWrapper.id
+          );
         };
 
         const isWidgetAffectedFilter = (widget: IWidget<string, any>): boolean => {
@@ -211,7 +225,7 @@ export const useCategoryActions = (configName: string | undefined, category: Cat
             return false;
           }
 
-          if (widget.area.type !== 'category') {
+          if (widget.area.type === 'sidebar') {
             return false;
           }
 
@@ -219,7 +233,10 @@ export const useCategoryActions = (configName: string | undefined, category: Cat
             return false;
           }
 
-          return widget.area.properties.id === currentItem.id;
+          return (
+            widget.area.properties.id === currentItem.id ||
+            widget.area.properties.id === currentWrapper.id
+          );
         };
 
         return {
@@ -260,8 +277,12 @@ export const useCategoryActions = (configName: string | undefined, category: Cat
                 })
               ),
           ],
-          categories: previous.categories.filter((x) => x.id !== category.id),
-          wrappers: previous.wrappers.filter((x) => x.position !== currentItem.position),
+          categories: previous.categories.filter(
+            (previousCategory) => previousCategory.id !== category.id
+          ),
+          wrappers: previous.wrappers.filter(
+            (previousWrapper) => previousWrapper.position !== currentItem.position
+          ),
         };
       },
       true

@@ -14,8 +14,16 @@
       "description": "התאם כותרות, לוגו ו-PWA"
     },
     "appereance": {
-      "name": "מראה חיצוני",
+      "name": "מראה",
       "description": "התאם אישית את הרקע, הצבעים ומראה האפליקציות"
+    },
+    "accessibility": {
+      "name": "נגישות",
+      "description": "הגדר את Homarr עבור משתמשים מוגבלים ונכים"
+    },
+    "access": {
+      "name": "גישה",
+      "description": "הגדר למי יש גישה ללוח שלך"
     }
   }
 }

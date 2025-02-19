@@ -4,14 +4,29 @@
     "description": "Mostra un calendario con le prossime versioni dalle integrazioni supportate.",
     "settings": {
       "title": "Impostazioni per il widget Calendario",
-      "useSonarrv4": {
-        "label": "Usa le API di Sonarr v4"
-      },
-      "sundayStart": {
-        "label": "Inizia la settimana di domenica"
-      },
       "radarrReleaseType": {
-        "label": "Tipo di release Radarr"
+        "label": "Tipo di release Radarr",
+        "data": {
+          "inCinemas": "Nei Cinema",
+          "physicalRelease": "Fisico",
+          "digitalRelease": "Digitale"
+        }
+      },
+      "hideWeekDays": {
+        "label": "Nascondi giorni della settimana"
+      },
+      "showUnmonitored": {
+        "label": "Mostra elementi non monitorati"
+      },
+      "fontSize": {
+        "label": "Dimensioni carattere",
+        "data": {
+          "xs": "Extra Piccolo",
+          "sm": "Piccolo",
+          "md": "Medio",
+          "lg": "Grande",
+          "xl": "Extra Grande"
+        }
       }
     }
   }

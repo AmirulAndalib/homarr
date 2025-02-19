@@ -7,6 +7,9 @@
       "displayInFahrenheit": {
         "label": "Display in Fahrenheit"
       },
+      "displayCityName": {
+        "label": ""
+      },
       "location": {
         "label": "Weafr locashun"
       }
@@ -29,5 +32,6 @@
       "thunderstormWithHail": "Thundahstorm wif hail",
       "unknown": "Unknown"
     }
-  }
+  },
+  "error": ""
 }
