@@ -16,7 +16,7 @@ import fs from 'fs';
 
 export default function BoardPage({
   config: initialConfig,
-  isDockerEnabled: isDockerEnabled
+  isDockerEnabled: isDockerEnabled,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   useInitConfig(initialConfig);
 
@@ -65,7 +65,8 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     return result;
   }
 
-  const isDockerEnabled: boolean = !!env.DOCKER_HOST || !!env.DOCKER_PORT || fs.existsSync('/var/run/docker.sock');
+  const isDockerEnabled: boolean =
+    !!env.DOCKER_HOST || !!env.DOCKER_PORT || fs.existsSync('/var/run/docker.sock');
 
   return {
     props: {

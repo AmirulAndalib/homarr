@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     createContext: createTRPCContext,
     onError({ error, path }) {
       Consola.error(`tRPC OpenAPI error on ${path}: ${error}`);
-    }
+    },
   })(req, res);
 };
 

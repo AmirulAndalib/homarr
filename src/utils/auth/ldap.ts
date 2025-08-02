@@ -69,8 +69,10 @@ const ldapSearch = async <
           //That can then be processed by decodeURIComponent which will turn back characters to normal.
           userDn = decodeURIComponent(
             entry.pojo.objectName.replace(/(?<!\\)\\([0-9a-fA-F]{2})/g, '%$1')
-          )
-        } catch { reject(new Error ('Cannot resolve distinguishedName for the user')) }
+          );
+        } catch {
+          reject(new Error('Cannot resolve distinguishedName for the user'));
+        }
         results.push(
           entry.pojo.attributes.reduce<Record<string, string | string[]>>(
             (obj, attr) => {

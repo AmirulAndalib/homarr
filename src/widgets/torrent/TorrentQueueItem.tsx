@@ -8,7 +8,7 @@ import {
   Progress,
   Stack,
   Text,
-  useMantineTheme
+  useMantineTheme,
 } from '@mantine/core';
 import {
   IconAffiliate,

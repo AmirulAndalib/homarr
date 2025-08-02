@@ -1,4 +1,15 @@
-import { Box, Card, createStyles, Group, Image, SimpleGrid, Stack, Text, Title, UnstyledButton } from '@mantine/core';
+import {
+  Box,
+  Card,
+  createStyles,
+  Group,
+  Image,
+  SimpleGrid,
+  Stack,
+  Text,
+  Title,
+  UnstyledButton,
+} from '@mantine/core';
 import { IconArrowRight } from '@tabler/icons-react';
 import { GetServerSideProps } from 'next';
 import { useSession } from 'next-auth/react';

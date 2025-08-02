@@ -110,7 +110,7 @@ const CurrentUserAvatar = forwardRef<HTMLDivElement, CurrentUserAvatarProps>(
         ref={ref}
         color={user == null ? undefined : primaryColor}
         src={getAvatarLink(user?.email)}
-        alt={user?.name?.slice(0, 2).toUpperCase() ?? "anon"}
+        alt={user?.name?.slice(0, 2).toUpperCase() ?? 'anon'}
         styles={{ root: { border: `1px solid ${border}` }, image: {} }}
         {...others}
       >

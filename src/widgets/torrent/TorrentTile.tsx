@@ -251,7 +251,9 @@ function TorrentTile({ widget }: TorrentTileProps) {
     enableColumnFilters: false,
     enableRowVirtualization: true,
     rowVirtualizerProps: { overscan: 20 },
-    mantineTableContainerProps: { sx: { scrollbarWidth: 'none', flex: '1', borderRadius: '0.5rem' } },
+    mantineTableContainerProps: {
+      sx: { scrollbarWidth: 'none', flex: '1', borderRadius: '0.5rem' },
+    },
     mantineTableBodyCellProps: { style: { background: 'transparent' } },
     mantineTableHeadCellProps: {
       style: { borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' },

@@ -12,7 +12,14 @@ import {
   Table,
   Text,
 } from '@mantine/core';
-import { IconAnchor, IconKey, IconLanguage, IconSchema, IconVersions, IconVocabulary } from '@tabler/icons-react';
+import {
+  IconAnchor,
+  IconKey,
+  IconLanguage,
+  IconSchema,
+  IconVersions,
+  IconVocabulary,
+} from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
 import { InitOptions } from 'i18next';
 import { GetServerSidePropsContext } from 'next';

@@ -12,22 +12,22 @@ export const IconRespositories = [
   new GitHubIconsRepository(
     GitHubIconsRepository.walkxcode,
     'Walkxcode Dashboard Icons',
-    'Walkxcode on Github',
+    'Walkxcode on Github'
   ),
   new UnpkgIconsRepository(
     UnpkgIconsRepository.tablerRepository,
     'Tabler Icons',
-    'Tabler Icons - GitHub (MIT)',
+    'Tabler Icons - GitHub (MIT)'
   ),
   new JsdelivrIconsRepository(
     JsdelivrIconsRepository.papirusRepository,
     'Papirus Icons',
-    'Papirus Development Team on GitHub (Apache 2.0)',
+    'Papirus Development Team on GitHub (Apache 2.0)'
   ),
   new JsdelivrIconsRepository(
     JsdelivrIconsRepository.homelabSvgAssetsRepository,
     'Homelab Svg Assets',
-    'loganmarchione on GitHub (MIT)',
+    'loganmarchione on GitHub (MIT)'
   ),
 ];
 

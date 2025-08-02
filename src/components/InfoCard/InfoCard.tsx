@@ -39,7 +39,7 @@ export const InfoCard = ({ bg, cardProp, message, link, hoverProp, position }: I
         <IconInfoCircle size="1.25rem" style={{ display: 'block', opacity: 0.5 }} />
       </HoverCard.Target>
       <HoverCard.Dropdown
-        bg={bg ?? colorScheme === 'light' ? 'gray.2' : 'dark.8'}
+        bg={(bg ?? colorScheme === 'light') ? 'gray.2' : 'dark.8'}
         maw={400}
         px="10px"
         py="5px"

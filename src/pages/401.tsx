@@ -16,21 +16,27 @@ export default function Custom401() {
   return (
     <MainLayout>
       <Center h="100dvh" w="100dvw">
-      <Head>
-        <title>Access denied • Homarr</title>
-      </Head>
-      <Stack maw={500} p="xl">
-        <Image className={classes.image} src={imageAccessDenied} width={200} height={200} alt="" />
-        <Title>{t('title')}</Title>
-        <Text>{t('text')}</Text>
+        <Head>
+          <title>Access denied • Homarr</title>
+        </Head>
+        <Stack maw={500} p="xl">
+          <Image
+            className={classes.image}
+            src={imageAccessDenied}
+            width={200}
+            height={200}
+            alt=""
+          />
+          <Title>{t('title')}</Title>
+          <Text>{t('text')}</Text>
 
-        <Button component={Link} variant="light" href="/auth/login">
-          {t('switchAccount')}
-        </Button>
-      </Stack>
-    </Center>
+          <Button component={Link} variant="light" href="/auth/login">
+            {t('switchAccount')}
+          </Button>
+        </Stack>
+      </Center>
     </MainLayout>
-  )
+  );
 }
 
 export async function getStaticProps({ req, res, locale }: GetServerSidePropsContext) {

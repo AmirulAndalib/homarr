@@ -21,9 +21,7 @@ export function QueuePanel(props: QueuePanelProps) {
 
   if (!queue?.array.length) {
     return (
-      <Center
-        style={{ flex: '1' }}
-      >
+      <Center style={{ flex: '1' }}>
         <Title order={3}>{t('views.queue.table.empty')}</Title>
       </Center>
     );
@@ -54,7 +52,9 @@ export function QueuePanel(props: QueuePanelProps) {
                       </Tooltip>
                     )}
                   </div>
-                  <Text lineClamp={1} size="xs">{item.filePath.split('\\').pop()?.split('/').pop() ?? item.filePath}</Text>
+                  <Text lineClamp={1} size="xs">
+                    {item.filePath.split('\\').pop()?.split('/').pop() ?? item.filePath}
+                  </Text>
                 </Group>
               </td>
               <td>

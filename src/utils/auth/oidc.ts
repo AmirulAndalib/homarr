@@ -32,7 +32,6 @@ export const createRedirectUri = (headers: OidcRedirectCallbackHeaders, pathname
 
   const host = headers['x-forwarded-host'] ?? headers.host;
 
-
   return `${protocol}://${host}${path}`;
 };
 

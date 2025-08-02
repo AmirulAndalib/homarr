@@ -7,5 +7,5 @@ export const openApiDocument = generateOpenApiDocument(rootRouter, {
   description: 'OpenAPI compliant REST API built of interfacing with Homarr',
   version: '1.0.0',
   baseUrl: 'http://localhost:3000/api',
-  docsUrl: 'https://homarr.dev'
+  docsUrl: 'https://homarr.dev',
 });

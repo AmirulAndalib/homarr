@@ -16,7 +16,8 @@ import {
   IconAlertCircle,
   IconClipboardList,
   IconCpu2,
-  IconReportAnalytics, IconTransform,
+  IconReportAnalytics,
+  IconTransform,
 } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
@@ -87,9 +88,7 @@ function MediaTranscodingTile({ widget }: TdarrQueueTileProps) {
   const { t } = useTranslation('modules/media-transcoding');
   const { config, name: configName } = useConfigContext();
 
-  const appId = config?.apps.find(
-    (app) => app.integration.type === 'tdarr',
-  )?.id;
+  const appId = config?.apps.find((app) => app.integration.type === 'tdarr')?.id;
   const app = config?.apps.find((app) => app.id === appId);
   const { defaultView, showHealthCheck, showHealthChecksInQueue, queuePageSize, showAppIcon } =
     widget.properties;
@@ -228,7 +227,12 @@ function MediaTranscodingTile({ widget }: TdarrQueueTileProps) {
         />
         {view === 'queue' && !!queue.data && (
           <>
-            <Pagination.Root total={totalQueuePages} value={queuePage} onChange={setQueuePage} size="sm">
+            <Pagination.Root
+              total={totalQueuePages}
+              value={queuePage}
+              onChange={setQueuePage}
+              size="sm"
+            >
               <Group spacing={5} position="center">
                 <Pagination.First disabled={queuePage === 1} />
                 <Pagination.Previous disabled={queuePage === 1} />

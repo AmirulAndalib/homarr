@@ -127,10 +127,12 @@ const getStatusTableSchema = z.object({
 
 export const tdarrRouter = createTRPCRouter({
   statistics: publicProcedure
-    .input(z.object({
-      appId: z.string(),
-      configName: z.string(),
-    }))
+    .input(
+      z.object({
+        appId: z.string(),
+        configName: z.string(),
+      })
+    )
     .query(async ({ input }): Promise<TdarrStatistics> => {
       const app = getTdarrApp(input.appId, input.configName);
       const appUrl = new URL('api/v2/cruddb', app.url);
@@ -182,10 +184,13 @@ export const tdarrRouter = createTRPCRouter({
     }),
 
   workers: publicProcedure
-    .input(z.object({
-      appId: z.string(),
-      configName: z.string(),
-    })).query(async ({ input }): Promise<TdarrWorker[]> => {
+    .input(
+      z.object({
+        appId: z.string(),
+        configName: z.string(),
+      })
+    )
+    .query(async ({ input }): Promise<TdarrWorker[]> => {
       const app = getTdarrApp(input.appId, input.configName);
       const appUrl = new URL('api/v2/get-nodes', app.url);
 
@@ -217,18 +222,22 @@ export const tdarrRouter = createTRPCRouter({
         step: worker.lastPluginDetails?.number ?? '',
         originalSize: worker.originalfileSizeInGbytes * 1_000_000_000, // file_size is in GB, convert to bytes,
         estimatedSize: worker.estSize ? worker.estSize * 1_000_000_000 : null, // file_size is in GB, convert to bytes,
-        outputSize: worker.outputFileSizeInGbytes ? worker.outputFileSizeInGbytes * 1_000_000_000 : null, // file_size is in GB, convert to bytes,
+        outputSize: worker.outputFileSizeInGbytes
+          ? worker.outputFileSizeInGbytes * 1_000_000_000
+          : null, // file_size is in GB, convert to bytes,
       }));
     }),
 
   queue: publicProcedure
-    .input(z.object({
-      appId: z.string(),
-      configName: z.string(),
-      showHealthChecksInQueue: z.boolean(),
-      pageSize: z.number(),
-      page: z.number(),
-    }))
+    .input(
+      z.object({
+        appId: z.string(),
+        configName: z.string(),
+        showHealthChecksInQueue: z.boolean(),
+        pageSize: z.number(),
+        page: z.number(),
+      })
+    )
     .query(async ({ input }): Promise<TdarrQueue> => {
       const app = getTdarrApp(input.appId, input.configName);
 
