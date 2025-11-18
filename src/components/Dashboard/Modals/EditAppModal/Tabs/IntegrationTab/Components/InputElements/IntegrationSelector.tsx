@@ -207,5 +207,5 @@ export const availableIntegrations = [
     value: 'tdarr',
     image: 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tdarr.png',
     label: 'Tdarr',
-  }
+  },
 ] as const satisfies Readonly<SelectItem[]>;

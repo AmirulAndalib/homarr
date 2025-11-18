@@ -177,10 +177,7 @@ function MediaRequestListTile({ widget }: MediaRequestListWidgetProps) {
                     alt="requester avatar"
                     radius="xl"
                   >
-                    <Image
-                      src={item.fallbackUserProfilePicture}
-                      alt="requester avatar"
-                    />
+                    <Image src={item.fallbackUserProfilePicture} alt="requester avatar" />
                   </Avatar>
                   <Anchor
                     href={item.userLink}

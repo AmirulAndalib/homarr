@@ -6,9 +6,13 @@ import { resetPasswordForUsername } from './commands/reset-password.js';
 yargs(process.argv.slice(2))
   .scriptName('homarr')
   .usage('$0 <cmd> [args]')
-  .command('reset-owner-password', 'Resets the current owner password without UI access', async () => {
-    await resetPasswordForOwner();
-  })
+  .command(
+    'reset-owner-password',
+    'Resets the current owner password without UI access',
+    async () => {
+      await resetPasswordForOwner();
+    }
+  )
   .command(
     'reset-password',
     'Reset the password of a specific user without UI access',
@@ -16,7 +20,7 @@ yargs(process.argv.slice(2))
       yargs.option('username', {
         type: 'string',
         describe: 'Username of user',
-        demandOption: true
+        demandOption: true,
       });
     },
     async (argv) => {

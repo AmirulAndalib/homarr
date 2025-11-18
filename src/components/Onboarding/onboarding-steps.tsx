@@ -11,19 +11,21 @@ export const OnboardingSteps = ({ isUpdate }: { isUpdate: boolean }) => {
 
   const [currentStep, setCurrentStep] = useState(0);
 
-  const nextStep = () => setCurrentStep((current) => {
-    const newValue = (current < maximumSteps ? current + 1 : current);
+  const nextStep = () =>
+    setCurrentStep((current) => {
+      const newValue = current < maximumSteps ? current + 1 : current;
 
-    if (currentStep + 1 >= maximumSteps) {
-      onFinishOnboarding();
-    }
+      if (currentStep + 1 >= maximumSteps) {
+        onFinishOnboarding();
+      }
 
-    return newValue;
-  });
+      return newValue;
+    });
 
   const prevStep = () => setCurrentStep((current) => (current > 0 ? current - 1 : current));
 
-  const { mutate: mutateConfigSchemaVersion } = api.config.updateConfigurationSchemaToLatest.useMutation();
+  const { mutate: mutateConfigSchemaVersion } =
+    api.config.updateConfigurationSchemaToLatest.useMutation();
 
   const onFinishOnboarding = () => {
     mutateConfigSchemaVersion();

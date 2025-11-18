@@ -16,8 +16,8 @@ export const checkForSessionOrAskForLogin = (
     return {
       redirect: {
         destination: '/401',
-        permanent: false
-      }
+        permanent: false,
+      },
     };
   }
 

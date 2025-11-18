@@ -7,7 +7,7 @@ import {
   Text,
   Title,
   UnstyledButton,
-  useMantineTheme
+  useMantineTheme,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconAlertTriangle } from '@tabler/icons-react';

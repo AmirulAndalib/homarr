@@ -58,7 +58,11 @@ export const mediaRequestsRouter = createTRPCRouter({
                   name: genericItem.name,
                   userName: item.requestedBy.displayName,
                   userProfilePicture: constructAvatarUrl(appUrl, item.requestedBy.avatar),
-                  fallbackUserProfilePicture: constructAvatarUrl(appUrl, item.requestedBy.avatar,'avatarproxy'),
+                  fallbackUserProfilePicture: constructAvatarUrl(
+                    appUrl,
+                    item.requestedBy.avatar,
+                    'avatarproxy'
+                  ),
                   userLink: `${appUrl}/users/${item.requestedBy.id}`,
                   userRequestCount: item.requestedBy.requestCount,
                   airDate: genericItem.airDate,
@@ -120,7 +124,11 @@ export const mediaRequestsRouter = createTRPCRouter({
                   id: user.id,
                   userName: user.displayName,
                   userProfilePicture: constructAvatarUrl(appUrl, user.avatar),
-                  fallbackUserProfilePicture: constructAvatarUrl(appUrl, user.avatar,'avatarproxy'),
+                  fallbackUserProfilePicture: constructAvatarUrl(
+                    appUrl,
+                    user.avatar,
+                    'avatarproxy'
+                  ),
                   userLink: `${appUrl}/users/${user.id}`,
                   userRequestCount: user.requestCount,
                 };
@@ -146,7 +154,7 @@ const constructAvatarUrl = (appUrl: string, avatar: string, path?: string) => {
     return avatar;
   }
 
-  return `${appUrl}/${path?.concat("/") ?? "" }${avatar}`;
+  return `${appUrl}/${path?.concat('/') ?? ''}${avatar}`;
 };
 
 const retrieveDetailsForItem = async (

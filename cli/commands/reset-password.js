@@ -36,17 +36,22 @@ export async function resetPasswordForUsername(username) {
       tx.run(
         sql`DELETE FROM session WHERE userId = (SELECT id FROM user WHERE name = ${username} LIMIT 1)`
       );
-      tx.run(sql`UPDATE user SET password = ${hashedPassword} WHERE id = (SELECT id FROM user WHERE name = ${username} LIMIT 1) LIMIT 1`);
+      tx.run(
+        sql`UPDATE user SET password = ${hashedPassword} WHERE id = (SELECT id FROM user WHERE name = ${username} LIMIT 1) LIMIT 1`
+      );
     });
     console.log(
-      boxen(`New password for '${username}' is '${chalk.red(newPassword)}'. You can now log in with this password.\nExising sessions have been destroyed and need to login again with the new passowrd.`, {
-        dimBorder: true,
-        borderStyle: 'round',
-        padding: {
-          left: 1,
-          right: 1
+      boxen(
+        `New password for '${username}' is '${chalk.red(newPassword)}'. You can now log in with this password.\nExising sessions have been destroyed and need to login again with the new passowrd.`,
+        {
+          dimBorder: true,
+          borderStyle: 'round',
+          padding: {
+            left: 1,
+            right: 1,
+          },
         }
-      })
+      )
     );
   } catch (err) {
     Consola.error('Failed to update password', err);

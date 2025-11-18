@@ -1,13 +1,4 @@
-import {
-  Center,
-  Group,
-  Progress,
-  ScrollArea,
-  Table,
-  Text,
-  Title,
-  Tooltip,
-} from '@mantine/core';
+import { Center, Group, Progress, ScrollArea, Table, Text, Title, Tooltip } from '@mantine/core';
 import { IconHeartbeat, IconTransform } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
 import { WidgetLoading } from '~/widgets/loading';
@@ -29,9 +20,7 @@ export function WorkersPanel(props: WorkersPanelProps) {
 
   if (!workers?.length) {
     return (
-      <Center
-        style={{ flex: '1' }}
-      >
+      <Center style={{ flex: '1' }}>
         <Title order={3}>{t('views.workers.table.empty')}</Title>
       </Center>
     );
@@ -63,7 +52,9 @@ export function WorkersPanel(props: WorkersPanelProps) {
                       </Tooltip>
                     )}
                   </div>
-                  <Text lineClamp={1} size="xs">{worker.filePath.split('\\').pop()?.split('/').pop() ?? worker.filePath}</Text>
+                  <Text lineClamp={1} size="xs">
+                    {worker.filePath.split('\\').pop()?.split('/').pop() ?? worker.filePath}
+                  </Text>
                 </Group>
               </td>
               <td>

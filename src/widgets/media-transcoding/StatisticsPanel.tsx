@@ -42,9 +42,7 @@ export function StatisticsPanel(props: StatisticsPanelProps) {
 
   if (!statistics || !allLibs) {
     return (
-      <Center
-        style={{ flex: '1' }}
-      >
+      <Center style={{ flex: '1' }}>
         <Title order={3}>{t('views.statistics.empty')}</Title>
       </Center>
     );
@@ -69,7 +67,7 @@ export function StatisticsPanel(props: StatisticsPanelProps) {
             <StatBox
               icon={<IconTransform size={18} />}
               label={t('views.statistics.box.transcodes', {
-                value: statistics.totalTranscodeCount
+                value: statistics.totalTranscodeCount,
               })}
             />
           </Grid.Col>
@@ -77,7 +75,7 @@ export function StatisticsPanel(props: StatisticsPanelProps) {
             <StatBox
               icon={<IconHeartbeat size={18} />}
               label={t('views.statistics.box.healthChecks', {
-                value: statistics.totalHealthCheckCount
+                value: statistics.totalHealthCheckCount,
               })}
             />
           </Grid.Col>
@@ -85,7 +83,7 @@ export function StatisticsPanel(props: StatisticsPanelProps) {
             <StatBox
               icon={<IconFileDescription size={18} />}
               label={t('views.statistics.box.files', {
-                value: statistics.totalFileCount
+                value: statistics.totalFileCount,
               })}
             />
           </Grid.Col>
@@ -93,16 +91,13 @@ export function StatisticsPanel(props: StatisticsPanelProps) {
             <StatBox
               icon={<IconDatabaseHeart size={18} />}
               label={t('views.statistics.box.spaceSaved', {
-                value: allLibs?.savedSpace ? humanFileSize(allLibs.savedSpace) : '-'
+                value: allLibs?.savedSpace ? humanFileSize(allLibs.savedSpace) : '-',
               })}
             />
           </Grid.Col>
         </Grid>
         <Stack align="center" spacing={0}>
-          <RingProgress
-            size={120}
-            sections={toRingProgressSections(allLibs.healthCheckStatus)}
-          />
+          <RingProgress size={120} sections={toRingProgressSections(allLibs.healthCheckStatus)} />
           <Text size="xs">{t('views.statistics.pies.healthChecks')}</Text>
         </Stack>
       </Group>
@@ -132,7 +127,7 @@ export function StatisticsPanel(props: StatisticsPanelProps) {
 }
 
 function toRingProgressSections(segments: TdarrPieSegment[]): RingProgressProps['sections'] {
-  const total = segments.reduce((prev, curr) => prev + curr.value , 0);
+  const total = segments.reduce((prev, curr) => prev + curr.value, 0);
   return segments.map((segment, index) => ({
     value: (segment.value * 100) / total,
     tooltip: `${segment.name}: ${segment.value}`,
@@ -158,9 +153,7 @@ function StatBox(props: StatBoxProps) {
     >
       <Stack spacing="xs" align="center">
         {icon}
-        <Text size="xs">
-          {label}
-        </Text>
+        <Text size="xs">{label}</Text>
       </Stack>
     </Box>
   );

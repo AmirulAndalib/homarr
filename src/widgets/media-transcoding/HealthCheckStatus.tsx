@@ -37,9 +37,9 @@ export function HealthCheckStatus(props: StatisticsBadgeProps) {
   return (
     <HoverCard position="bottom" width={250} shadow="sm">
       <HoverCard.Target>
-          <Indicator color={textColor(indicatorColor, colorScheme)} size={8} display="flex">
-            <IconHeartbeat size={20} />
-          </Indicator>
+        <Indicator color={textColor(indicatorColor, colorScheme)} size={8} display="flex">
+          <IconHeartbeat size={20} />
+        </Indicator>
       </HoverCard.Target>
       <HoverCard.Dropdown bg={colorScheme === 'light' ? 'gray.2' : 'dark.8'}>
         <Stack spacing="sm" align="center">

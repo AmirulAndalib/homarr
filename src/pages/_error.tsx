@@ -1,4 +1,13 @@
-import { Accordion, Center, createStyles, Group, Stack, Text, Title, useMantineTheme } from '@mantine/core';
+import {
+  Accordion,
+  Center,
+  createStyles,
+  Group,
+  Stack,
+  Text,
+  Title,
+  useMantineTheme,
+} from '@mantine/core';
 import { IconDeviceDesktop, IconInfoCircle, IconServer } from '@tabler/icons-react';
 import { NextPageContext } from 'next';
 import Head from 'next/head';

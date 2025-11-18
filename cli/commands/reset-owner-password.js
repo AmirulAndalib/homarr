@@ -38,14 +38,17 @@ export async function resetPasswordForOwner() {
       tx.run(sql`UPDATE user SET password = ${hashedPassword} WHERE is_owner = 1 LIMIT 1;`);
     });
     console.log(
-      boxen(`New owner password is '${chalk.red(newPassword)}'. You can now log in with this password.\nExising sessions have been destroyed and need to login again with the new passowrd.`, {
-        dimBorder: true,
-        borderStyle: 'round',
-        padding: {
-          left: 1,
-          right: 1
+      boxen(
+        `New owner password is '${chalk.red(newPassword)}'. You can now log in with this password.\nExising sessions have been destroyed and need to login again with the new passowrd.`,
+        {
+          dimBorder: true,
+          borderStyle: 'round',
+          padding: {
+            left: 1,
+            right: 1,
+          },
         }
-      })
+      )
     );
   } catch (err) {
     Consola.error('Failed to update password', err);

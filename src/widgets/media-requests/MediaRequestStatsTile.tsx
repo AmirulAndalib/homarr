@@ -164,7 +164,7 @@ function MediaRequestStatsTile({ widget }: MediaRequestStatsWidgetProps) {
                     />
                   </Tooltip.Floating>
                 )}
-                <Avatar radius="xl" size={45} src={user.userProfilePicture} alt="user avatar" >
+                <Avatar radius="xl" size={45} src={user.userProfilePicture} alt="user avatar">
                   <Image src={user.fallbackUserProfilePicture} alt="user avatar" />
                 </Avatar>
                 <Stack spacing={0} style={{ flex: 1 }}>

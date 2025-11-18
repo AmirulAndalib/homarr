@@ -19,7 +19,7 @@ export class HomeAssistant {
     try {
       const response = await fetch(appendPath(this.basePath, `/states/${entityId}`), {
         headers: {
-          'Authorization': `Bearer ${this.token}`,
+          Authorization: `Bearer ${this.token}`,
         },
       });
       const body = await response.json();
@@ -43,12 +43,12 @@ export class HomeAssistant {
     try {
       const response = await fetch(appendPath(this.basePath, `/services/automation/trigger`), {
         headers: {
-          'Authorization': `Bearer ${this.token}`,
+          Authorization: `Bearer ${this.token}`,
         },
         body: JSON.stringify({
-          'entity_id': entityId,
+          entity_id: entityId,
         }),
-        method: 'POST'
+        method: 'POST',
       });
       return response.ok;
     } catch (err) {
@@ -59,7 +59,7 @@ export class HomeAssistant {
 
   /**
    * Triggers a toggle action for a specific entity.
-   * 
+   *
    * @param entityId - The ID of the entity to toggle.
    * @returns A boolean indicating whether the toggle action was successful.
    */
@@ -67,12 +67,12 @@ export class HomeAssistant {
     try {
       const response = await fetch(appendPath(this.basePath, `/services/homeassistant/toggle`), {
         headers: {
-          'Authorization': `Bearer ${this.token}`,
+          Authorization: `Bearer ${this.token}`,
         },
         body: JSON.stringify({
-          'entity_id': entityId,
+          entity_id: entityId,
         }),
-        method: 'POST'
+        method: 'POST',
       });
       return response.ok;
     } catch (err) {

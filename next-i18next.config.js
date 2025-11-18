@@ -36,7 +36,7 @@ module.exports = {
       'vi',
       'et',
       'lt',
-      'ro'
+      'ro',
     ],
 
     localeDetection: false,
